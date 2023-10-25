@@ -90,7 +90,7 @@ class CustomerContainer extends StatelessWidget {
                   height: AppSizes.height_1,
                 ),
                 MyRegularText(
-                  label: "+91-${number??''}",
+                  label: "+61-${number??''}",
                   fontSize: 16,
                   style: TextStyle(
                       fontSize: 12,

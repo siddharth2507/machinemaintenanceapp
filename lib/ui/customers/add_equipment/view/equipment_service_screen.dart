@@ -15,6 +15,7 @@ import 'package:machinemaintainapp/components/widgets/my_theme_button.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/customers/add_equipment/controller/add_equipment_controller.dart';
 import 'package:machinemaintainapp/ui/customers/customer_detail/model/equipment_response.dart';
+import 'package:machinemaintainapp/utills/session/nk_dates_utils.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
 class EquipmentServiceScreen extends StatefulWidget {
@@ -115,10 +116,14 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                 make: make ?? '',
                 model: model ?? '',
                 serial: serialNumber ?? '',
-                manufactureDate: manufacture ?? '',
-                commissionDate: commission ?? '',
-                majorDate: tenYearMajor ?? '',
-                majorDatee: yearMajor ?? '',
+                manufactureDate:NKDateUtils.commonDayFormat(
+                  NKDateUtils.formatStringUTCDateTime(manufacture ?? '')),
+                commissionDate: commission != null? NKDateUtils.commonDayFormat(
+                    NKDateUtils.formatStringUTCDateTime(commission ?? '')):'',
+                majorDate: tenYearMajor !=null?NKDateUtils.commonDayFormat(
+                    NKDateUtils.formatStringUTCDateTime(tenYearMajor ?? '')):'',
+                majorDatee: yearMajor!=null?NKDateUtils.commonDayFormat(
+                    NKDateUtils.formatStringUTCDateTime(yearMajor ?? '')):'',
             //    majorDatee: yearMajor ?? '',
               ),
               Padding(
@@ -413,7 +418,7 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                   .saveServiceHistory(context, customer_id, equipment_id,serviceId!)
                   .then((value) {
 
-                addEquipmentController.saveServiceHistoryFirstTime(context, customer_id, equipment_id).then((value) {Get.close(0);});
+                addEquipmentController.saveServiceHistoryFirstTime(context, customer_id, equipment_id,0).then((value) {Get.close(0);});
              // Get.back();
               });
             }

@@ -286,7 +286,7 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                                           addEquipmentController
                                               .addCustomerEquipment(context, id)
                                               .then((value) {
-                                                addEquipmentController.saveServiceHistoryFirstTime(context, id, value!.data!.id!).then((value) {Get.close(1);});
+                                                addEquipmentController.saveServiceHistoryFirstTime(context, id, value!.data!.id!,1).then((value) {Get.close(1);});
                                           });
                                         }),
                                   ),
@@ -307,7 +307,7 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                                               .data!
                                               .id!;
 
-                                          addEquipmentController.saveServiceHistoryFirstTime(context, id, equipmentId).then((value) {
+                                          addEquipmentController.saveServiceHistoryFirstTime(context, id, equipmentId,1).then((value) {
                                             Get.toNamed(
                                                 AppRoutes.equipmentService,
                                                 arguments: [

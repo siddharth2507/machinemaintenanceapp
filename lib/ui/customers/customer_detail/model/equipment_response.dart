@@ -1,6 +1,3 @@
-import 'package:machinemaintainapp/ui/customers/customer_detail/model/equipment_response.dart';
-import 'package:machinemaintainapp/ui/customers/customer_detail/model/equipment_response.dart';
-
 /// status : true
 /// message : "Record fetch successfully."
 /// data : {"total":1,"perPage":50,"currentPage":1,"lastPage":1,"equipment":[{"id":3,"create_by":"6","customer_id":"34","machine_name":"HITACHI MACHINE","unit_number":"UNTNMBR234","make":"Werner","model":"SNERMBR6220MJ","date_of_manufactur":"2022-08-10","date_of_commission":"2022-08-10","date_of_10_year_major":"2022-08-10","date_of_15_year_major":"2022-08-10","service_date":null,"last_service_hours":null,"type":null,"last_engine_service_date_and_hours":null,"next_service_dates":null,"created_at":"2023-10-10T04:08:23.000000Z","updated_at":"2023-10-10T04:08:23.000000Z"}]}
@@ -233,14 +230,14 @@ class Equipment {
     }
     if (json['lastCompletedServiceDetails'] != null) {
       _lastCompletedServiceDetails = [];
-      print("parsedata ${json['lastCompletedServiceDetails'][0]['id']}");
+      //print("parsedata ${json['lastCompletedServiceDetails'][0]['id']}");
       json['lastCompletedServiceDetails'].forEach((v) {
         _lastCompletedServiceDetails
             ?.add(LastCompletedServiceDetails.fromJson(v));
-        print("parsedata ${_lastCompletedServiceDetails!.length}");
+       // print("parsedata ${_lastCompletedServiceDetails!.length}");
       });
 
-      print("parsedata IDDDDD ${_lastCompletedServiceDetails!.first.id}");
+   //   print("parsedata IDDDDD ${_lastCompletedServiceDetails!.first.id}");
     }
   }
 

@@ -95,7 +95,7 @@ class DetailContainer extends StatelessWidget {
                     SvgPicture.asset('assets/icons/call_incoming.svg'),
                     SizedBox(width: AppSizes.width_1_5),
                     MyRegularText(
-                      label: "+91-${number ?? ''}",
+                      label: "+61-${number ?? ''}",
                       fontSize: 16,
                       style: TextStyle(
                           fontSize: 12,

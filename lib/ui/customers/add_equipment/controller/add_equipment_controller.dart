@@ -11,6 +11,7 @@ import 'package:machinemaintainapp/ui/customers/add_equipment/model/add_euipmnt_
 import 'package:machinemaintainapp/ui/delete_equipment/model/delete_equipment_request.dart';
 import 'package:machinemaintainapp/ui/delete_equipment/model/delete_equipment_response.dart';
 import 'package:machinemaintainapp/utills/progressbar.dart';
+import 'package:machinemaintainapp/utills/session/nk_dates_utils.dart';
 import '../../../../utills/utils.dart';
 
 class AddEquipmentController extends GetxController {
@@ -40,8 +41,8 @@ class AddEquipmentController extends GetxController {
   ///Add Equipment
   Rx<AddEquipmentResponse> addEquipmentResponse = AddEquipmentResponse().obs;
 
-  Future<AddEquipmentResponse?> addCustomerEquipment(context,
-      int customer_id) async {
+  Future<AddEquipmentResponse?> addCustomerEquipment(
+      context, int customer_id) async {
     await SessionHelper().getLoginResponse().then((value) {
       token = value!.data!.token;
     });
@@ -100,17 +101,28 @@ class AddEquipmentController extends GetxController {
       }
     });
   }
+
   /// save Service FirstTime
-  Future<SaveServiceHistoryResponse> saveServiceHistoryFirstTime(context, int custome_id,
-      int equipment_id) async {
+  Future<SaveServiceHistoryResponse> saveServiceHistoryFirstTime(
+      context, int custome_id, int equipment_id, int type) async {
     var request;
     await SessionHelper().getLoginResponse().then((value) {
       token = value!.data!.token;
     });
+    var date = DateTime.now();
+    // var newDate = DateTime(date.year, date.month +3, date.day);
+    var apinext3monthdate =
+        NKDateUtils.apiDayFormat(DateTime(date.year, date.month + 3, date.day));
+    var todayservicedate =
+        NKDateUtils.apiDayFormat(DateTime(date.year, date.month, date.day));
+    print("API_NEXT $apinext3monthdate");
+
     request = SaveServiceHistoryRequest(
         token: token ?? '',
-        next_service_dates: '2023-11-23',
+        last_service_date: todayservicedate,
+        next_service_dates: type ==0? nextServiceDateController.text: apinext3monthdate,
         customer_id: custome_id,
+        last_service_reading: '0',
         equipment_id: equipment_id);
 
     await apiWorker.saveServiceHistory(request, context).then((value) {
@@ -118,24 +130,21 @@ class AddEquipmentController extends GetxController {
         //ProgressBar.hideProgressBar();
         saveServiceHistoryResponse.value = value;
         print(
-            'value+++12 ++ ${saveServiceHistoryResponse.value.data
-                .toString()}');
+            'value+++12 ++ ${saveServiceHistoryResponse.value.data.toString()}');
         return saveServiceHistoryResponse.value;
-      }else{
+      } else {
         return null;
       }
-
     });
     return saveServiceHistoryResponse.value;
   }
-
 
   ///Add Service
   Rx<SaveServiceHistoryResponse> saveServiceHistoryResponse =
       SaveServiceHistoryResponse().obs;
 
-  Future<void> saveServiceHistory(context, int custome_id, int equipment_id,
-      int serviceId) async {
+  Future<void> saveServiceHistory(
+      context, int custome_id, int equipment_id, int serviceId) async {
     var request;
     await SessionHelper().getLoginResponse().then((value) {
       token = value!.data!.token;
@@ -152,8 +161,7 @@ class AddEquipmentController extends GetxController {
           service_type: service.value,
           customer_id: custome_id,
           equipment_id: equipment_id,
-          attchement: image
-      );
+          attchement: image);
     } else {
       request = SaveServiceHistoryRequest(
           id: serviceId,
@@ -173,11 +181,9 @@ class AddEquipmentController extends GetxController {
         //ProgressBar.hideProgressBar();
         saveServiceHistoryResponse.value = value;
         print(
-            'value+++12 ++ ${saveServiceHistoryResponse.value.data
-                .toString()}');
-      //  Get.back();
+            'value+++12 ++ ${saveServiceHistoryResponse.value.data.toString()}');
+        //  Get.back();
       }
     });
   }
-
 }

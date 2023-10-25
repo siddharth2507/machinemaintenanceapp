@@ -112,7 +112,7 @@ class EquipmentServiceContainer extends StatelessWidget {
                ),
                Row(
                      children: [
-                       const MyRegularText(label: 'Serail',color: Colors.white,fontWeight: FontWeight.w500,fontSize: 10),
+                       const MyRegularText(label: 'Serial',color: Colors.white,fontWeight: FontWeight.w500,fontSize: 10),
                        const Padding(
                          padding: EdgeInsets.only(left: 4,right: 4),
                          child: MyRegularText(label: ':',color: Colors.white,fontWeight: FontWeight.w500,fontSize: 10),

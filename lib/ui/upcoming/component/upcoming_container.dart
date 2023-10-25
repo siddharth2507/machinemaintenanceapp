@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:machinemaintainapp/components/common_size/common_hight_width.dart';
 import 'package:machinemaintainapp/components/widgets/my_common_container.dart';
 import 'package:machinemaintainapp/components/widgets/my_regular_text.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
@@ -108,7 +107,7 @@ class UpComingContainer extends StatelessWidget {
                 height: AppSizes.height_1,
               ),
               Padding(
-                padding:  EdgeInsets.only(left: AppSizes.width_40),
+                padding:  EdgeInsets.only(left: AppSizes.width_38),
                 child: MyCommnonContainer(
                   width: AppSizes.width_42,
                   color: Colors.orange,

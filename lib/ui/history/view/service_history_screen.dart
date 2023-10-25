@@ -1,10 +1,7 @@
-import 'dart:io';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:machinemaintainapp/common_components/component/common_list_view.dart';
 import 'package:machinemaintainapp/common_components/component/equipment_service_container.dart';
 import 'package:machinemaintainapp/common_components/component/my_common_formfield.dart';
 import 'package:machinemaintainapp/common_components/component/last_service_detail_container.dart';
@@ -12,6 +9,7 @@ import 'package:machinemaintainapp/components/widgets/my_common_container.dart';
 import 'package:machinemaintainapp/components/widgets/my_regular_text.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/history/controller/service_history_controller.dart';
+import 'package:machinemaintainapp/utills/session/nk_dates_utils.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
 class ServiceHistoryScreen extends StatefulWidget {
@@ -111,10 +109,20 @@ class _ServiceHistoryScreenState extends State<ServiceHistoryScreen> {
                 make: make ?? '',
                 model: model ?? '',
                 serial: serialNumber ?? '',
-                manufactureDate: manufacture ?? '',
-                commissionDate: commission ?? '',
-                majorDate: tenYearMajor ?? '',
-                majorDatee: yearMajor ?? '',
+                manufactureDate: NKDateUtils.commonDayFormat(
+                    NKDateUtils.formatStringUTCDateTime(manufacture ?? '')),
+                commissionDate: commission != null
+                    ? NKDateUtils.commonDayFormat(
+                        NKDateUtils.formatStringUTCDateTime(commission ?? ''))
+                    : '',
+                majorDate: tenYearMajor != null
+                    ? NKDateUtils.commonDayFormat(
+                        NKDateUtils.formatStringUTCDateTime(tenYearMajor ?? ''))
+                    : '',
+                majorDatee: yearMajor != null
+                    ? NKDateUtils.commonDayFormat(
+                        NKDateUtils.formatStringUTCDateTime(yearMajor ?? ''))
+                    : '',
               ),
               Padding(
                   padding: const EdgeInsets.only(
@@ -129,7 +137,11 @@ class _ServiceHistoryScreenState extends State<ServiceHistoryScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ServiceDetailContainer(
-                              date: date ?? '',
+                              date: date != null
+                                  ? NKDateUtils.commonDayFormat(
+                                      NKDateUtils.formatStringUTCDateTime(
+                                          date ?? ''))
+                                  : '',
                               type: type ?? '',
                               service: service ?? '',
                             ),

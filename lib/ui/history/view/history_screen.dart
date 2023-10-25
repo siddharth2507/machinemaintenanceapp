@@ -8,6 +8,7 @@ import 'package:machinemaintainapp/routes/routes.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/history/component/history_container.dart';
 import 'package:machinemaintainapp/ui/history/controller/service_history_controller.dart';
+import 'package:machinemaintainapp/utills/session/nk_dates_utils.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -19,16 +20,12 @@ class HistoryScreen extends StatefulWidget {
 
 class _HistoryScreenState extends State<HistoryScreen> {
   ServiceHistoryController serviceHistoryController = Get.find();
-  String? unitNO='';
-
+  String? unitNO = '';
 
   @override
   void initState() {
     // TODO: implement initState
-   // serviceHistoryController.searchController.text= unitNO!;
-   // print("unitNo>>>>${unitNO}");
-   // serviceHistoryController.searchController.text=unitNO!;
-    serviceHistoryController.getServiceHistory(context, 2,unitNO!);
+    serviceHistoryController.getServiceHistory(context, 2, unitNO!);
     super.initState();
   }
 
@@ -58,11 +55,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
             MyFormField(
                 controller: serviceHistoryController.searchController,
                 labelText: 'Search by unit number',
-               isReadOnly: false,
-               isRequire: false,
-               onTap: (){
-                  serviceHistoryController.getServiceHistory(context, 2,serviceHistoryController.searchController.text);
-               },
+                isReadOnly: false,
+                isRequire: false,
+                onTap: () {
+                  serviceHistoryController.getServiceHistory(context, 2,
+                      serviceHistoryController.searchController.text);
+                },
 
                 //onChanged: ,
                 decoration: InputDecoration(
@@ -77,167 +75,191 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     filled: true,
                     border: InputBorder.none)),
             Obx(
-              () => serviceHistoryController.getServiceHistoryResponse.value
-                          .data?.equipment?.length !=
-                      0
+                  () =>
+              serviceHistoryController.getServiceHistoryResponse.value
+                  .data?.equipment?.length !=
+                  0
                   ? Expanded(
-                      child: CommonList(
-                          length: serviceHistoryController
+                child: CommonList(
+                    length: serviceHistoryController
+                        .getServiceHistoryResponse
+                        .value
+                        .data
+                        ?.equipment
+                        ?.length ??
+                        0,
+                    child: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 14.0, right: 14, top: 14),
+                        child: InkWell(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.serviceHistory,
+                                arguments: [
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .customer
+                                      ?.companyName,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .equipment
+                                      ?.machineName,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .equipment
+                                      ?.make,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .equipment
+                                      ?.model,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .equipment
+                                      ?.serialNumber,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .equipment
+                                      ?.dateOfManufactur,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .equipment
+                                      ?.dateOfCommission,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .equipment
+                                      ?.dateOf10YearMajor,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .equipment
+                                      ?.dateOf15YearMajor,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .notes.toString(),
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .lastServiceDate,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .serviceType,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .lastServiceReading,
+                                  serviceHistoryController
+                                      .getServiceHistoryResponse
+                                      .value
+                                      .data
+                                      ?.equipment![index]
+                                      .attchement,
+                                ]);
+                          },
+                          child: HistoryContainer(
+                              machineName: serviceHistoryController
                                   .getServiceHistoryResponse
                                   .value
                                   .data
-                                  ?.equipment
-                                  ?.length ??
-                              0,
-                          child: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 14.0,right: 14,top: 14),
-                              child: InkWell(
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.serviceHistory,
-                                      arguments: [
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .customer
-                                            ?.companyName,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.machineName,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.make,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.model,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.serialNumber,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.dateOfManufactur,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.dateOfCommission,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.dateOf10YearMajor,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.dateOf15YearMajor,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .notes,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .lastServiceDate,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .serviceType,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .lastServiceReading,
-                                        serviceHistoryController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .attchement,
-                                      ]);
-                                },
-                                child: HistoryContainer(
-                                    machineName: serviceHistoryController
-                                        .getServiceHistoryResponse
-                                        .value
-                                        .data
-                                        ?.equipment![index]
-                                        .customer
-                                        ?.companyName
-                                        .toString(),
-                                    name: serviceHistoryController
-                                        .getServiceHistoryResponse
-                                        .value
-                                        .data
-                                        ?.equipment![index]
-                                        .customer
-                                        ?.name
-                                        .toString(),
-                                    unitNo: serviceHistoryController.getServiceHistoryResponse.value.data?.equipment![index].equipment?.unitNumber.toString(),
-                                    type: serviceHistoryController.getServiceHistoryResponse.value.data?.equipment![index].serviceType
-                                        .toString(),
-                                    date: serviceHistoryController
-                                        .getServiceHistoryResponse
-                                        .value
-                                        .data
-                                        ?.equipment![index]
-                                        .lastServiceDate
-                                        .toString(),
-                                    service: serviceHistoryController
-                                        .getServiceHistoryResponse
-                                        .value
-                                        .data
-                                        ?.equipment![index]
-                                        .lastServiceReading
-                                        .toString(),
-                                    child: SvgPicture.asset('assets/icons/arrow_right.svg')),
-                              ),
-                            );
-                          },
-                          physics: const AlwaysScrollableScrollPhysics()),
-                    )
+                                  ?.equipment![index]
+                                  .customer
+                                  ?.companyName
+                                  .toString(),
+                              name: serviceHistoryController
+                                  .getServiceHistoryResponse
+                                  .value
+                                  .data
+                                  ?.equipment![index]
+                                  .customer
+                                  ?.name
+                                  .toString(),
+                              unitNo: serviceHistoryController
+                                  .getServiceHistoryResponse.value.data
+                                  ?.equipment![index].equipment?.unitNumber
+                                  .toString(),
+                              type: serviceHistoryController
+                                  .getServiceHistoryResponse.value.data
+                                  ?.equipment![index].serviceType
+                                  .toString(),
+                              date: NKDateUtils.commonDayFormat(
+                                  NKDateUtils.formatStringUTCDateTime(
+                                      serviceHistoryController
+                                          .getServiceHistoryResponse.value.data
+                                          !.equipment![index].lastServiceDate!)),
+                              // date: serviceHistoryController
+                              //     .getServiceHistoryResponse
+                              //     .value
+                              //     .data
+                              //     ?.equipment![index]
+                              //     .lastServiceDate != null
+                              //     ? DateFormat('dd/MM/yyyy').format(DateTime.parse(serviceHistoryController
+                              //     .getServiceHistoryResponse.value.data
+                              //     ?.equipment![index].lastServiceDate.toString())
+                              //    )
+                              //     : null,
+                            /*  date: serviceHistoryController
+                                  .getServiceHistoryResponse
+                                  .value
+                                  .data
+                                  ?.equipment![index]
+                                  .lastServiceDate
+                                  .toString(),*/
+                              service: serviceHistoryController
+                                  .getServiceHistoryResponse
+                                  .value
+                                  .data
+                                  ?.equipment![index]
+                                  .lastServiceReading
+                                  .toString(),
+                              child: SvgPicture.asset(
+                                  'assets/icons/arrow_right.svg')),
+                        ),
+                      );
+                    },
+                    physics: const AlwaysScrollableScrollPhysics()),
+              )
                   : Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: AppSizes.height_40),
-                        child:
-                            const MyRegularText(label: 'No Data Available'),
-                      ),
-                    ),
+                child: Padding(
+                  padding: EdgeInsets.only(top: AppSizes.height_40),
+                  child:
+                  const MyRegularText(label: 'No Data Available'),
+                ),
+              ),
             )
           ],
         ),
@@ -246,101 +268,100 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
 
+/// date picker
 
-  /// date picker
-
-  // @override
-  // String? get restorationId => 'main';
-  //
-  //
-  // final RestorableDateTimeN _startDate = RestorableDateTimeN(DateTime.now().subtract(const Duration(days: 30)));
-  // final RestorableDateTimeN _endDate = RestorableDateTimeN(DateTime.now());
-  // late final RestorableRouteFuture<DateTimeRange?>_restorableDateRangePickerRouteFuture = RestorableRouteFuture<DateTimeRange?>(
-  //   onComplete: _selectDateRange,
-  //   onPresent: (NavigatorState navigator, Object? arguments) {
-  //     return navigator.restorablePush(_dateRangePickerRoute, arguments: <String, dynamic>{
-  //       'initialStartDate': _startDate.value?.millisecondsSinceEpoch,
-  //       'initialEndDate': _endDate.value?.millisecondsSinceEpoch,
-  //     });
-  //   },
-  // );
-  //
-  //
-  // void _selectDateRange(DateTimeRange? newSelectedDate) {
-  //   if (newSelectedDate != null) {
-  //     setState(() {
-  //       _startDate.value = newSelectedDate.start;
-  //       _endDate.value = newSelectedDate.end;
-  //       final DateFormat formatter = DateFormat('yyyy-MM-dd');
-  //       final String startformatted = formatter.format(_startDate.value!);
-  //       final String endformatted = formatter.format(_endDate.value!);
-  //       setState(() {
-  //         filterstartdate = startformatted;
-  //         filterenddate = endformatted;
-  //         //serviceHistoryController.getServiceHistory(context, 2);
-  //
-  //       });
-  //       print('date+++ ${startformatted}');
-  //       print('date+++ ${_endDate.value}');
-  //     });
-  //   }
-  // }
-  //
-  // @override
-  // void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-  //   registerForRestoration(_startDate, 'start_date');
-  //   registerForRestoration(_endDate, 'end_date');
-  //   registerForRestoration(
-  //       _restorableDateRangePickerRouteFuture, 'date_picker_route_future');
-  // }
-  //
-  // @pragma('vm:entry-point')
-  // static Route<DateTimeRange?> _dateRangePickerRoute(
-  //     BuildContext context,
-  //     Object? arguments,
-  //     ) {
-  //   return DialogRoute<DateTimeRange?>(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return Theme(
-  //         data: Theme.of(context).copyWith(
-  //           colorScheme: const ColorScheme.light(
-  //             primary: Colors.white, // header background color
-  //             onPrimary: Colors.black, // header text color
-  //             onSurface: Colors.black, // body text color
-  //             secondary: Colors.orange,
-  //             //
-  //           ),
-  //           textButtonTheme: TextButtonThemeData(
-  //             style: TextButton.styleFrom(
-  //               foregroundColor: Colors.red, // button text color
-  //             ),
-  //           ),
-  //         ),
-  //         child: DateRangePickerDialog(
-  //           restorationId: 'date_picker_dialog',
-  //           initialDateRange: _initialDateTimeRange(arguments! as Map<dynamic, dynamic>),
-  //           firstDate: DateTime.now().subtract(const Duration(days: 365)),
-  //           lastDate: DateTime.now(),
-  //           initialEntryMode: DatePickerEntryMode.calendarOnly,
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-  //
-  // static DateTimeRange? _initialDateTimeRange(Map<dynamic, dynamic> arguments) {
-  //   if (arguments['initialStartDate'] != null &&
-  //       arguments['initialEndDate'] != null) {
-  //     return DateTimeRange(
-  //       start: DateTime.fromMillisecondsSinceEpoch(
-  //           arguments['initialStartDate'] as int),
-  //       end: DateTime.fromMillisecondsSinceEpoch(
-  //           arguments['initialEndDate'] as int),
-  //     );
-  //   }
-  //
-  //   return null;
-  // }
+// @override
+// String? get restorationId => 'main';
+//
+//
+// final RestorableDateTimeN _startDate = RestorableDateTimeN(DateTime.now().subtract(const Duration(days: 30)));
+// final RestorableDateTimeN _endDate = RestorableDateTimeN(DateTime.now());
+// late final RestorableRouteFuture<DateTimeRange?>_restorableDateRangePickerRouteFuture = RestorableRouteFuture<DateTimeRange?>(
+//   onComplete: _selectDateRange,
+//   onPresent: (NavigatorState navigator, Object? arguments) {
+//     return navigator.restorablePush(_dateRangePickerRoute, arguments: <String, dynamic>{
+//       'initialStartDate': _startDate.value?.millisecondsSinceEpoch,
+//       'initialEndDate': _endDate.value?.millisecondsSinceEpoch,
+//     });
+//   },
+// );
+//
+//
+// void _selectDateRange(DateTimeRange? newSelectedDate) {
+//   if (newSelectedDate != null) {
+//     setState(() {
+//       _startDate.value = newSelectedDate.start;
+//       _endDate.value = newSelectedDate.end;
+//       final DateFormat formatter = DateFormat('yyyy-MM-dd');
+//       final String startformatted = formatter.format(_startDate.value!);
+//       final String endformatted = formatter.format(_endDate.value!);
+//       setState(() {
+//         filterstartdate = startformatted;
+//         filterenddate = endformatted;
+//         //serviceHistoryController.getServiceHistory(context, 2);
+//
+//       });
+//       print('date+++ ${startformatted}');
+//       print('date+++ ${_endDate.value}');
+//     });
+//   }
+// }
+//
+// @override
+// void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+//   registerForRestoration(_startDate, 'start_date');
+//   registerForRestoration(_endDate, 'end_date');
+//   registerForRestoration(
+//       _restorableDateRangePickerRouteFuture, 'date_picker_route_future');
+// }
+//
+// @pragma('vm:entry-point')
+// static Route<DateTimeRange?> _dateRangePickerRoute(
+//     BuildContext context,
+//     Object? arguments,
+//     ) {
+//   return DialogRoute<DateTimeRange?>(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return Theme(
+//         data: Theme.of(context).copyWith(
+//           colorScheme: const ColorScheme.light(
+//             primary: Colors.white, // header background color
+//             onPrimary: Colors.black, // header text color
+//             onSurface: Colors.black, // body text color
+//             secondary: Colors.orange,
+//             //
+//           ),
+//           textButtonTheme: TextButtonThemeData(
+//             style: TextButton.styleFrom(
+//               foregroundColor: Colors.red, // button text color
+//             ),
+//           ),
+//         ),
+//         child: DateRangePickerDialog(
+//           restorationId: 'date_picker_dialog',
+//           initialDateRange: _initialDateTimeRange(arguments! as Map<dynamic, dynamic>),
+//           firstDate: DateTime.now().subtract(const Duration(days: 365)),
+//           lastDate: DateTime.now(),
+//           initialEntryMode: DatePickerEntryMode.calendarOnly,
+//         ),
+//       );
+//     },
+//   );
+// }
+//
+// static DateTimeRange? _initialDateTimeRange(Map<dynamic, dynamic> arguments) {
+//   if (arguments['initialStartDate'] != null &&
+//       arguments['initialEndDate'] != null) {
+//     return DateTimeRange(
+//       start: DateTime.fromMillisecondsSinceEpoch(
+//           arguments['initialStartDate'] as int),
+//       end: DateTime.fromMillisecondsSinceEpoch(
+//           arguments['initialEndDate'] as int),
+//     );
+//   }
+//
+//   return null;
+// }
 
 }

@@ -3,13 +3,12 @@ import 'package:get/get.dart';
 import 'package:machinemaintainapp/common_components/component/common_list_view.dart';
 import 'package:machinemaintainapp/common_components/component/equipment_service_container.dart';
 import 'package:machinemaintainapp/common_components/component/last_service_detail_container.dart';
-import 'package:machinemaintainapp/common_components/component/machine_date_detail_container.dart';
 import 'package:machinemaintainapp/components/common_size/common_hight_width.dart';
 import 'package:machinemaintainapp/components/widgets/my_common_container.dart';
 import 'package:machinemaintainapp/components/widgets/my_regular_text.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/customers/service_note/controller/servicenote_controller.dart';
-import 'package:machinemaintainapp/utills/const_string.dart';
+import 'package:machinemaintainapp/utills/session/nk_dates_utils.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
 class ServiceNoteScreen extends StatefulWidget {
@@ -106,10 +105,14 @@ class _ServiceNoteScreenState extends State<ServiceNoteScreen> {
                 make: make ?? '',
                 model: model ?? '',
                 serial: serialNumber ?? '',
-                manufactureDate: manufacture ?? '',
-                commissionDate: commission ?? '',
-                majorDate: tenYearMajor ?? '',
-                majorDatee: yearMajor ?? '',
+                manufactureDate:NKDateUtils.commonDayFormat(
+                    NKDateUtils.formatStringUTCDateTime(manufacture ?? '')),
+                commissionDate: commission != null? NKDateUtils.commonDayFormat(
+                    NKDateUtils.formatStringUTCDateTime(commission ?? '')):'',
+                majorDate: tenYearMajor !=null?NKDateUtils.commonDayFormat(
+                    NKDateUtils.formatStringUTCDateTime(tenYearMajor ?? '')):'',
+                majorDatee: yearMajor!=null?NKDateUtils.commonDayFormat(
+                    NKDateUtils.formatStringUTCDateTime(yearMajor ?? '')):'',
               ),
               Padding(
                   padding: const EdgeInsets.only(
@@ -150,8 +153,12 @@ class _ServiceNoteScreenState extends State<ServiceNoteScreen> {
                                             .value
                                             .data
                                             ?.equipment![index]
-                                            .lastServiceDate
-                                            .toString(),
+                                            .lastServiceDate!=null?NKDateUtils.commonDayFormat(
+                                            NKDateUtils.formatStringUTCDateTime(serviceNoteController
+                                                .getServiceHistoryResponse
+                                                .value
+                                                .data!.equipment![index]
+                                                .lastServiceDate!)):'',
                                         type: serviceNoteController
                                             .getServiceHistoryResponse
                                             .value

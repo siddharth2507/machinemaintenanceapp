@@ -9,6 +9,7 @@ import 'package:machinemaintainapp/routes/routes.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/upcoming/component/upcoming_container.dart';
 import 'package:machinemaintainapp/ui/upcoming/controller/upcoming_service_controller.dart';
+import 'package:machinemaintainapp/utills/session/nk_dates_utils.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
 class UpComingScreen extends StatefulWidget {
@@ -216,13 +217,15 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
                                       .equipment
                                       ?.unitNumber
                                       .toString(),
-                                  nextService: upcomingServiceController
-                                      .getServiceHistoryResponse
-                                      .value
-                                      .data
-                                      ?.equipment![index]
-                                      .nextServiceDates
-                                      .toString(),
+                                  nextService: NKDateUtils.commonDayFormat(
+                                      NKDateUtils.formatStringUTCDateTime(
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              !.equipment![index]
+                                              .nextServiceDates
+                                              .toString())),
                                   child: SvgPicture.asset(
                                       'assets/icons/arrow_right.svg'),
                                 )
