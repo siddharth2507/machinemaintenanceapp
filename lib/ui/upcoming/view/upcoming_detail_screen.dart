@@ -9,7 +9,7 @@ import 'package:machinemaintainapp/components/widgets/my_common_container.dart';
 import 'package:machinemaintainapp/components/widgets/my_regular_text.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/history/controller/service_history_controller.dart';
-import 'package:machinemaintainapp/utills/session/nk_dates_utils.dart';
+import 'package:machinemaintainapp/utills/nk_dates_utils.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
 class UpcomingDetailScreen extends StatefulWidget {

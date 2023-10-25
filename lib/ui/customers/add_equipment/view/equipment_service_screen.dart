@@ -15,7 +15,7 @@ import 'package:machinemaintainapp/components/widgets/my_theme_button.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/customers/add_equipment/controller/add_equipment_controller.dart';
 import 'package:machinemaintainapp/ui/customers/customer_detail/model/equipment_response.dart';
-import 'package:machinemaintainapp/utills/session/nk_dates_utils.dart';
+import 'package:machinemaintainapp/utills/nk_dates_utils.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
 class EquipmentServiceScreen extends StatefulWidget {

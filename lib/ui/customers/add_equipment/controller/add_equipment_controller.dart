@@ -11,7 +11,7 @@ import 'package:machinemaintainapp/ui/customers/add_equipment/model/add_euipmnt_
 import 'package:machinemaintainapp/ui/delete_equipment/model/delete_equipment_request.dart';
 import 'package:machinemaintainapp/ui/delete_equipment/model/delete_equipment_response.dart';
 import 'package:machinemaintainapp/utills/progressbar.dart';
-import 'package:machinemaintainapp/utills/session/nk_dates_utils.dart';
+import 'package:machinemaintainapp/utills/nk_dates_utils.dart';
 import '../../../../utills/utils.dart';
 
 class AddEquipmentController extends GetxController {
