@@ -27,92 +27,93 @@ class _LoginScreenState extends State<LoginScreen> {
     // TODO: implement build
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  left: AppSizes.width_4_5,
-                  right: AppSizes.width_4_5,
-                  top: AppSizes.height_3,
-                ),
-                child: Image.asset('assets/icons/app_logo.png'),
-              ),
-              SizedBox(height: AppSizes.height_12),
-              MyCommnonContainer(
-                borderRadiusGeometry: const BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20)),
-                width: AppDimensions.instance!.width * 1,
-                child: Padding(
-                  padding: nkRegularPadding(
-                      top: AppSizes.height_2,
-                      left: AppSizes.width_8,
-                      right: AppSizes.width_8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const MyRegularText(
-                        label: 'Log In',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                      SizedBox(height: AppSizes.height_2),
-                      MyLoginTextField(
-                        controller: loginController.emailTextEditingController,
-                        hintText: 'Email',
-                        textInputType: TextInputType.emailAddress,
-                        textCapitalization: TextCapitalization.none,
-                        suffixIcon: const Icon(
-                          Icons.done,
-                          color: Colors.orange,
+        child: Stack(
+          children: [
+            Align(
+                alignment: Alignment.topCenter,
+                child: Image.asset(
+                  'assets/icons/app_logo.png',
+                  height: AppSizes.height_26,
+                )),
+            Column(
+              // crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                MyCommnonContainer(
+                  borderRadiusGeometry: const BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(20)),
+                  width: AppDimensions.instance!.width * 1,
+                  child: Padding(
+                    padding: nkRegularPadding(
+                        top: AppSizes.height_2,
+                        left: AppSizes.width_8,
+                        right: AppSizes.width_8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const MyRegularText(
+                          label: 'Log In',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
                         ),
-                      ),
-                      SizedBox(
-                        height: AppSizes.height_3,
-                      ),
-                      MyLoginTextField(
-                        controller:
-                            loginController.passwordTextEditingController,
-                        hintText: '******',
-                        obscureText: true,
-                        minLines: 1,
-                      ),
-                      SizedBox(
-                        height: AppSizes.height_3,
-                      ),
-                      MyThemeButton(
-                        height: AppSizes.height_6_5,
-                        buttonText: 'Sign In',
-                        onPressed: () {
-                          if (loginController
-                              .emailTextEditingController.value.text.isEmpty) {
-                            CommanSnackbar.showError(
-                                'Please Enter Email Address',
-                                'Email Address is required');
-                          } else if (loginController
-                              .passwordTextEditingController
-                              .value
-                              .text
-                              .isEmpty) {
-                            CommanSnackbar.showError('Please Enter Password',
-                                'More Then 8 Characters  is required');
-                          } else {
-                            print('Sign In');
-                            loginController.loginApi(context);
-                          }
-                        },
-                      ),
-                      SizedBox(
-                        height: AppSizes.height_2,
-                      ),
-                    ],
+                        SizedBox(height: AppSizes.height_2),
+                        MyLoginTextField(
+                          controller:
+                              loginController.emailTextEditingController,
+                          hintText: 'Email',
+                          textInputType: TextInputType.emailAddress,
+                          textCapitalization: TextCapitalization.none,
+                          suffixIcon: const Icon(
+                            Icons.done,
+                            color: Colors.orange,
+                          ),
+                        ),
+                        SizedBox(
+                          height: AppSizes.height_3,
+                        ),
+                        MyLoginTextField(
+                          controller:
+                              loginController.passwordTextEditingController,
+                          hintText: '******',
+                          obscureText: true,
+                          minLines: 1,
+                        ),
+                        SizedBox(
+                          height: AppSizes.height_3,
+                        ),
+                        MyThemeButton(
+                          height: AppSizes.height_6_5,
+                          buttonText: 'Sign In',
+                          onPressed: () {
+                            if (loginController.emailTextEditingController.value
+                                .text.isEmpty) {
+                              CommanSnackbar.showError(
+                                  'Please Enter Email Address',
+                                  'Email Address is required');
+                            } else if (loginController
+                                .passwordTextEditingController
+                                .value
+                                .text
+                                .isEmpty) {
+                              CommanSnackbar.showError('Please Enter Password',
+                                  'More Then 8 Characters  is required');
+                            } else {
+                              print('Sign In');
+                              loginController.loginApi(context);
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: AppSizes.height_2,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
-          ),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
