@@ -18,9 +18,8 @@ class UpcomingServiceController extends GetxController {
   Rx<GetServiceHistoryResponse> getServiceHistoryResponse =
       GetServiceHistoryResponse().obs;
 
-
   Future<GetServiceHistoryResponse?> getUpcomingServiceHistory(
-      context, int status,String filterstartdate,String filterenddate) async {
+      context, int status, String filterstartdate, String filterenddate) async {
     await SessionHelper().getLoginResponse().then((value) {
       token = value!.data!.token;
     });
@@ -28,8 +27,7 @@ class UpcomingServiceController extends GetxController {
         token: token ?? '',
         status: status,
         start_date: filterstartdate,
-        end_date: filterenddate
-    );
+        end_date: filterenddate);
     await apiWorker.getUpcomingServiceHistory(request, context).then((value) {
       if (value != null) {
         getServiceHistoryResponse.value = value;

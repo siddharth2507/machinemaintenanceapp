@@ -14,8 +14,7 @@ class GetServiceHistoryRequest {
       this.status,
       this.start_date,
       this.end_date,
-        this.unit_number
-      });
+      this.unit_number});
 
   static GetServiceHistoryRequest? fromMap(Map<dynamic, dynamic> map) {
     if (map == null) return null;

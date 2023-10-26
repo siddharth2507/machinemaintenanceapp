@@ -20,15 +20,12 @@ class ServiceHistoryController extends GetxController {
       GetServiceHistoryResponse().obs;
 
   Future<GetServiceHistoryResponse?> getServiceHistory(
-      context, int status,String unit_number) async {
+      context, int status, String unit_number) async {
     await SessionHelper().getLoginResponse().then((value) {
       token = value!.data!.token;
     });
     var request = GetServiceHistoryRequest(
-      token: token ?? '',
-      status: status,
-      unit_number: unit_number
-    );
+        token: token ?? '', status: status, unit_number: unit_number);
     await apiWorker.getServiceHistory(request, context).then((value) {
       if (value != null) {
         getServiceHistoryResponse.value = value;
@@ -40,25 +37,4 @@ class ServiceHistoryController extends GetxController {
     return null;
   }
 
-  // Future<GetServiceHistoryResponse?> getUpcomingServiceHistory(
-  //     context, int status,String filterstartdate,String filterenddate) async {
-  //   await SessionHelper().getLoginResponse().then((value) {
-  //     token = value!.data!.token;
-  //   });
-  //   var request = GetServiceHistoryRequest(
-  //       token: token ?? '',
-  //       status: status,
-  //       start_date: filterstartdate,
-  //       end_date: filterenddate
-  //   );
-  //   await apiWorker.getUpcomingServiceHistory(request, context).then((value) {
-  //     if (value != null) {
-  //       getServiceHistoryResponse.value = value;
-  //       print('value+++123 ++ ${value.data.toString()}');
-  //     } else {
-  //       return null;
-  //     }
-  //   });
-  //   return null;
-  // }
 }

@@ -105,14 +105,18 @@ class _ServiceNoteScreenState extends State<ServiceNoteScreen> {
                 make: make ?? '',
                 model: model ?? '',
                 serial: serialNumber ?? '',
-                manufactureDate:NKDateUtils.commonDayFormat(
-                    NKDateUtils.formatStringUTCDateTime(manufacture ?? '')),
-                commissionDate: commission != null? NKDateUtils.commonDayFormat(
-                    NKDateUtils.formatStringUTCDateTime(commission ?? '')):'',
-                majorDate: tenYearMajor !=null?NKDateUtils.commonDayFormat(
-                    NKDateUtils.formatStringUTCDateTime(tenYearMajor ?? '')):'',
-                majorDatee: yearMajor!=null?NKDateUtils.commonDayFormat(
-                    NKDateUtils.formatStringUTCDateTime(yearMajor ?? '')):'',
+                manufactureDate: manufacture != null
+                    ? NKDateUtils().getFormattedDate(manufacture!)
+                    : '',
+                commissionDate: commission != null
+                    ? NKDateUtils().getFormattedDate(commission!)
+                    : '',
+                majorDate: tenYearMajor != null
+                    ? NKDateUtils().getFormattedDate(tenYearMajor!)
+                    : '',
+                majorDatee: yearMajor != null
+                    ? NKDateUtils().getFormattedDate(yearMajor!)
+                    : '',
               ),
               Padding(
                   padding: const EdgeInsets.only(

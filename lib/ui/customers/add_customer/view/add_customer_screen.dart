@@ -123,7 +123,7 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
               CommanSnackbar.showError('Please Enter Name', 'Name is required');
             } else if (addCustomerController
                     .contactNumberController.value.text.length >
-                11) {
+                11&&addCustomerController.contactNumberController.text.isEmpty) {
               CommanSnackbar.showError(
                   'Please Enter Contact Number', 'Add Valid is required');
             } else if (addCustomerController

@@ -45,6 +45,7 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
   String? name = '';
   int? serviceId = 0;
   EquipmentResponse? equipmentResponse;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -62,12 +63,16 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
     yearMajor = data[9];
     companyName = data[10];
     serviceId = data[11];
-  //  equipmentResponse=data[12];
-   // name = data[12];
-    print('serviceId>>>>>${serviceId}');
+    //  equipmentResponse=data[12];
+    // name = data[12];
+    print(
+        'yearMajor>>>>>${yearMajor} ${NKDateUtils().getFormattedDate(yearMajor!)}');
+    print(
+        'manufacture>>>>>${manufacture} ${NKDateUtils().getFormattedDate(manufacture!)}');
+    print('commission>>>>>${commission}');
+    print('tenYearMajor>>>>>${tenYearMajor}');
     print('customer_id>>>>>${customer_id}');
     print('equipment_id>>>>>${equipment_id}');
-
   }
 
   @override
@@ -116,15 +121,18 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                 make: make ?? '',
                 model: model ?? '',
                 serial: serialNumber ?? '',
-                manufactureDate:NKDateUtils.commonDayFormat(
-                  NKDateUtils.formatStringUTCDateTime(manufacture ?? '')),
-                commissionDate: commission != null? NKDateUtils.commonDayFormat(
-                    NKDateUtils.formatStringUTCDateTime(commission ?? '')):'',
-                majorDate: tenYearMajor !=null?NKDateUtils.commonDayFormat(
-                    NKDateUtils.formatStringUTCDateTime(tenYearMajor ?? '')):'',
-                majorDatee: yearMajor!=null?NKDateUtils.commonDayFormat(
-                    NKDateUtils.formatStringUTCDateTime(yearMajor ?? '')):'',
-            //    majorDatee: yearMajor ?? '',
+                manufactureDate: manufacture != null
+                    ? NKDateUtils().getFormattedDate(manufacture!)
+                    : '',
+                commissionDate: commission != null
+                    ? NKDateUtils().getFormattedDate(commission!)
+                    : '',
+                majorDate: tenYearMajor != null
+                    ? NKDateUtils().getFormattedDate(tenYearMajor!)
+                    : '',
+                majorDatee: yearMajor != null
+                    ? NKDateUtils().getFormattedDate(yearMajor!)
+                    : '',
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 18.0, left: 18, right: 18),
@@ -162,7 +170,7 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                               setState(() {
                                 addEquipmentController
                                         .lastServiceDateController.text =
-                                    ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                                    ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                               });
                             }
                           },
@@ -172,7 +180,8 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                           textInputType: TextInputType.number,
                           controller: addEquipmentController.hourController,
                           inputFormatters: [
-                            IDKitNumeralTextInputFormatter.range(minValue: 0.0, maxValue: 9999.099)
+                            IDKitNumeralTextInputFormatter.range(
+                                minValue: 0.0, maxValue: 9999.099)
                           ],
                           hintText:
                               'Meter Reading at Last Service (0.1hrs to 9999.9hrs)',
@@ -265,7 +274,7 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                               setState(() {
                                 addEquipmentController
                                         .nextServiceDateController.text =
-                                    ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                                    ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                               });
                             }
                           },
@@ -415,14 +424,19 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                   'Please Enter Next Service Date', 'Date is required');
             } else {
               addEquipmentController
-                  .saveServiceHistory(context, customer_id, equipment_id,serviceId!)
+                  .saveServiceHistory(
+                      context, customer_id, equipment_id, serviceId!)
                   .then((value) {
-
-                addEquipmentController.saveServiceHistoryFirstTime(context, customer_id, equipment_id,0).then((value) {Get.close(0);});
-             // Get.back();
+                addEquipmentController
+                    .saveServiceHistoryFirstTime(
+                        context, customer_id, equipment_id, 0)
+                    .then((value) {
+                  Get.close(0);
+                });
+                // Get.back();
               });
             }
-          /*  {
+            /*  {
               addEquipmentController
                   .saveServiceHistoryFirstTime(context, customer_id, equipment_id)
                   .then((value) {

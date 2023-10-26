@@ -19,17 +19,17 @@ class UpComingScreen extends StatefulWidget {
   State<UpComingScreen> createState() => _UpComingScreenState();
 }
 
-class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
+class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin {
   UpcomingServiceController upcomingServiceController = Get.find();
-  String? filterstartdate='';
-  String? filterenddate='';
+  String? filterstartdate = '';
+  String? filterenddate = '';
 
   @override
   void initState() {
     // TODO: implement initState
     filterstartdate.toString();
-    //.searchController.text='${filterstartdate}-${filterenddate}';
-    upcomingServiceController.getUpcomingServiceHistory(context, 1,filterstartdate!,filterenddate!);
+    upcomingServiceController.getUpcomingServiceHistory(
+        context, 1, filterstartdate!, filterenddate!);
     super.initState();
   }
 
@@ -62,11 +62,10 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
                 labelText: 'Search by Date',
                 isRequire: false,
                 isReadOnly: true,
-                onTap: (){
+                onTap: () {
                   setState(() {
                     _restorableDateRangePickerRouteFuture.present();
                   });
-
                 },
                 // textInputType: TextInputType.number,
                 //onChanged: ,
@@ -74,7 +73,7 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
                     prefixIcon: SizedBox(
                       width: 10,
                       height: 10,
-                      child:Image.asset(
+                      child: Image.asset(
                         'assets/icons/calendar.png',
                         color: Colors.white,
                       ),
@@ -99,137 +98,138 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
                               0,
                           child: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.only(left: 14.0,top: 14,right: 14),
+                              padding: const EdgeInsets.only(
+                                  left: 14.0, top: 14, right: 14),
                               child: InkWell(
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.upcomingDetailScreen,
-                                      arguments: [
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .customer
-                                            ?.companyName,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.machineName,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.make,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.model,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.serialNumber,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.dateOfManufactur,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.dateOfCommission,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.dateOf10YearMajor,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .equipment
-                                            ?.dateOf15YearMajor,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .notes.toString(),
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .lastServiceDate,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .serviceType,
-                                        upcomingServiceController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .lastServiceReading,
-                                      ]);
-                                },
-                                child:UpComingContainer(
-                                  machineName: upcomingServiceController
-                                      .getServiceHistoryResponse
-                                      .value
-                                      .data
-                                      ?.equipment![index]
-                                      .customer
-                                      ?.companyName,
-                                  name: upcomingServiceController
-                                      .getServiceHistoryResponse
-                                      .value
-                                      .data
-                                      ?.equipment![index]
-                                      .customer
-                                      ?.name
-                                      .toString(),
-                                  unitNo: upcomingServiceController
-                                      .getServiceHistoryResponse
-                                      .value
-                                      .data
-                                      ?.equipment![index]
-                                      .equipment
-                                      ?.unitNumber
-                                      .toString(),
-                                  nextService: NKDateUtils.commonDayFormat(
-                                      NKDateUtils.formatStringUTCDateTime(
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.upcomingDetailScreen,
+                                        arguments: [
                                           upcomingServiceController
                                               .getServiceHistoryResponse
                                               .value
                                               .data
-                                              !.equipment![index]
-                                              .nextServiceDates
-                                              .toString())),
-                                  child: SvgPicture.asset(
-                                      'assets/icons/arrow_right.svg'),
-                                )
-                              ),
+                                              ?.equipment![index]
+                                              .customer
+                                              ?.companyName,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .equipment
+                                              ?.machineName,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .equipment
+                                              ?.make,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .equipment
+                                              ?.model,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .equipment
+                                              ?.serialNumber,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .equipment
+                                              ?.dateOfManufactur,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .equipment
+                                              ?.dateOfCommission,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .equipment
+                                              ?.dateOf10YearMajor,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .equipment
+                                              ?.dateOf15YearMajor,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .notes
+                                              .toString(),
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .lastServiceDate,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .serviceType,
+                                          upcomingServiceController
+                                              .getServiceHistoryResponse
+                                              .value
+                                              .data
+                                              ?.equipment![index]
+                                              .lastServiceReading,
+                                        ]);
+                                  },
+                                  child: UpComingContainer(
+                                    machineName: upcomingServiceController
+                                        .getServiceHistoryResponse
+                                        .value
+                                        .data
+                                        ?.equipment![index]
+                                        .customer
+                                        ?.companyName,
+                                    name: upcomingServiceController
+                                        .getServiceHistoryResponse
+                                        .value
+                                        .data
+                                        ?.equipment![index]
+                                        .customer
+                                        ?.name
+                                        .toString(),
+                                    unitNo: upcomingServiceController
+                                        .getServiceHistoryResponse
+                                        .value
+                                        .data
+                                        ?.equipment![index]
+                                        .equipment
+                                        ?.unitNumber
+                                        .toString(),
+                                    nextService: NKDateUtils.commonDayFormat(
+                                        NKDateUtils.formatStringUTCDateTime(
+                                            upcomingServiceController
+                                                .getServiceHistoryResponse
+                                                .value
+                                                .data!
+                                                .equipment![index]
+                                                .nextServiceDates
+                                                .toString())),
+                                    child: SvgPicture.asset(
+                                        'assets/icons/arrow_right.svg'),
+                                  )),
                             );
                           },
                           physics: const AlwaysScrollableScrollPhysics()),
@@ -237,8 +237,7 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
                   : Center(
                       child: Padding(
                         padding: EdgeInsets.only(top: AppSizes.height_40),
-                        child:
-                            const MyRegularText(label: 'No Data Available'),
+                        child: const MyRegularText(label: 'No Data Available'),
                       ),
                     ),
             )
@@ -251,19 +250,21 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
   @override
   String? get restorationId => 'main';
 
-
-  final RestorableDateTimeN _startDate = RestorableDateTimeN(DateTime.now().subtract(const Duration(days: 30)));
+  final RestorableDateTimeN _startDate =
+      RestorableDateTimeN(DateTime.now().subtract(const Duration(days: 30)));
   final RestorableDateTimeN _endDate = RestorableDateTimeN(DateTime.now());
-  late final RestorableRouteFuture<DateTimeRange?>_restorableDateRangePickerRouteFuture = RestorableRouteFuture<DateTimeRange?>(
+  late final RestorableRouteFuture<DateTimeRange?>
+      _restorableDateRangePickerRouteFuture =
+      RestorableRouteFuture<DateTimeRange?>(
     onComplete: _selectDateRange,
     onPresent: (NavigatorState navigator, Object? arguments) {
-      return navigator.restorablePush(_dateRangePickerRoute, arguments: <String, dynamic>{
+      return navigator
+          .restorablePush(_dateRangePickerRoute, arguments: <String, dynamic>{
         'initialStartDate': _startDate.value?.millisecondsSinceEpoch,
         'initialEndDate': _endDate.value?.millisecondsSinceEpoch,
       });
     },
   );
-
 
   void _selectDateRange(DateTimeRange? newSelectedDate) {
     if (newSelectedDate != null) {
@@ -276,8 +277,10 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
         setState(() {
           filterstartdate = startformatted;
           filterenddate = endformatted;
-          upcomingServiceController.searchDateController.text='${filterstartdate}-${filterenddate}';
-          upcomingServiceController.getUpcomingServiceHistory(context, 1,filterstartdate!,filterenddate!);
+          upcomingServiceController.searchDateController.text =
+              '${filterstartdate}-${filterenddate}';
+          upcomingServiceController.getUpcomingServiceHistory(
+              context, 1, filterstartdate!, filterenddate!);
           //  controller.getSubscriptionList(filterstartdate,filterenddate,controller.pageUser.value,true,context);
         });
         print('date+++ ${startformatted}');
@@ -296,9 +299,9 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
 
   @pragma('vm:entry-point')
   static Route<DateTimeRange?> _dateRangePickerRoute(
-      BuildContext context,
-      Object? arguments,
-      ) {
+    BuildContext context,
+    Object? arguments,
+  ) {
     return DialogRoute<DateTimeRange?>(
       context: context,
       builder: (BuildContext context) {
@@ -319,7 +322,8 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
           ),
           child: DateRangePickerDialog(
             restorationId: 'date_picker_dialog',
-            initialDateRange: _initialDateTimeRange(arguments! as Map<dynamic, dynamic>),
+            initialDateRange:
+                _initialDateTimeRange(arguments! as Map<dynamic, dynamic>),
             firstDate: DateTime.now().subtract(const Duration(days: 365)),
             lastDate: DateTime(2024),
             initialEntryMode: DatePickerEntryMode.calendarOnly,
@@ -341,5 +345,4 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin{
     }
     return null;
   }
-
 }

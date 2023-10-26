@@ -109,19 +109,17 @@ class _ServiceHistoryScreenState extends State<ServiceHistoryScreen> {
                 make: make ?? '',
                 model: model ?? '',
                 serial: serialNumber ?? '',
-                manufactureDate: NKDateUtils.commonDayFormat(
-                    NKDateUtils.formatStringUTCDateTime(manufacture ?? '')),
+                manufactureDate: manufacture != null
+                    ? NKDateUtils().getFormattedDate(manufacture!)
+                    : '',
                 commissionDate: commission != null
-                    ? NKDateUtils.commonDayFormat(
-                        NKDateUtils.formatStringUTCDateTime(commission ?? ''))
+                    ? NKDateUtils().getFormattedDate(commission!)
                     : '',
                 majorDate: tenYearMajor != null
-                    ? NKDateUtils.commonDayFormat(
-                        NKDateUtils.formatStringUTCDateTime(tenYearMajor ?? ''))
+                    ? NKDateUtils().getFormattedDate(tenYearMajor!)
                     : '',
                 majorDatee: yearMajor != null
-                    ? NKDateUtils.commonDayFormat(
-                        NKDateUtils.formatStringUTCDateTime(yearMajor ?? ''))
+                    ? NKDateUtils().getFormattedDate(yearMajor!)
                     : '',
               ),
               Padding(

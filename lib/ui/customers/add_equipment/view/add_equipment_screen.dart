@@ -128,7 +128,7 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                         if (datePicked != null) {
                           setState(() {
                             addEquipmentController.manufactureController.text =
-                                ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                                ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                           });
                         }
                       },
@@ -148,7 +148,7 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                         if (datePicked != null) {
                           setState(() {
                             addEquipmentController.commissionController.text =
-                                ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                                ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                           });
                         }
                       },
@@ -168,7 +168,7 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                         if (datePicked != null) {
                           setState(() {
                             addEquipmentController.tenYearMajorController.text =
-                                ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                                ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                           });
                         }
                       },
@@ -188,7 +188,7 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                         if (datePicked != null) {
                           setState(() {
                             addEquipmentController.yearMajorController.text =
-                                ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                                ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                           });
                         }
                       },
