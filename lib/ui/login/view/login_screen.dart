@@ -87,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             if (loginController.emailTextEditingController.value
                                 .text.isEmpty) {
+                             // AwesomeSnackbarContent(title: 'Email Address is required', message: 'Please Enter Email Address', contentType: ContentType.failure,color: Colors.red,);
                               CommanSnackbar.showError(
                                   'Please Enter Email Address',
                                   'Email Address is required');

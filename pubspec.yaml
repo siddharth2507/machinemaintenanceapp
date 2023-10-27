@@ -56,6 +56,7 @@ dependencies:
   dotted_border: ^2.1.0
   http: ^1.1.0
   idkit_inputformatters: ^0.0.1
+  awesome_snackbar_content: ^0.1.3
 
 
 

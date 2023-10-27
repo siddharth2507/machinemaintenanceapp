@@ -300,25 +300,45 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOfManufactur,
+                                            .dateOfManufactur!=null?customerDetailController
+                                            .equipmentResponse
+                                            .value
+                                            .data!
+                                            .equipment![index]
+                                            .dateOfManufactur??'': "",
                                         customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOfCommission,
+                                            .dateOfCommission!=null?customerDetailController
+                                            .equipmentResponse
+                                            .value
+                                            .data!
+                                            .equipment![index]
+                                            .dateOfCommission??'':"",
                                         customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOf10YearMajor,
+                                            .dateOf10YearMajor!=null?customerDetailController
+                                            .equipmentResponse
+                                            .value
+                                            .data!
+                                            .equipment![index]
+                                            .dateOf10YearMajor??'':"",
                                         customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOf15YearMajor,
+                                            .dateOf15YearMajor!=null?customerDetailController
+                                            .equipmentResponse
+                                            .value
+                                            .data!
+                                            .equipment![index]
+                                            .dateOf15YearMajor??'':"",
                                         machineName,
                                         customerDetailController
                                             .equipmentResponse

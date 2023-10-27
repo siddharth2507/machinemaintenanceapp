@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,9 +48,27 @@ abstract class NkCommonFunction {
     ));
   }
 
+  static dynamic showError(error, suggestion,context) {
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      duration: Duration(seconds: 3),
+      content: AwesomeSnackbarContent(
+        title: '${error}',
+        message:
+        "${suggestion}",
+        color: Colors.red,
+        contentType: ContentType.failure,
+      ),
+    );
+    return ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
+  }
+
   static get snakBarCloser async =>
       Get.isSnackbarOpen ? await Get.closeCurrentSnackbar() : null;
-
   static showDeleteSnakBar(
       {String? message,
       void Function()? onYesPressed,
@@ -65,7 +84,7 @@ abstract class NkCommonFunction {
       messageText: Center(
         child: MyRegularText(
           color: buttonTextColor, label: 'vv',
-         // label: message ?? areYouSureToDelete,
+          // label: message ?? areYouSureToDelete,
         ),
       ),
       mainButton: Wrap(
@@ -73,7 +92,7 @@ abstract class NkCommonFunction {
           TextButton(
               onPressed: onYesPressed,
               child: MyRegularText(
-               // label: yes,
+                // label: yes,
                 color: errorColor,
                 fontWeight: NkGeneralSize.nkBoldFontWeight(),
                 fontSize: NkFontSize.largeFont(), label: '',

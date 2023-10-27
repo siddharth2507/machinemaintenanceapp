@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:machinemaintainapp/ui/customers/add_customer/model/add_customer_request.dart';
 import 'package:machinemaintainapp/ui/customers/add_customer/model/save_customer_response.dart';
@@ -39,11 +37,12 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .postbycustom(
+      context,
       ApiConstants.loginUrl,
       data: FormData.fromMap(loginRequest.toJson()),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return LoginResponse.fromJson(response.data);
@@ -56,6 +55,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .getbycustom(
+      context,
       ApiConstants.getCustomerUrl,
       options: Options(
         headers: {
@@ -64,7 +64,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return CustomerResponse.fromJson(response.data);
@@ -76,6 +76,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .postbycustom(
+      context,
       ApiConstants.saveCustomerUrl,
       data: FormData.fromMap(model.toJson()),
       options: Options(
@@ -85,7 +86,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return SaveCustomerResponse.fromJson(response.data);
@@ -97,6 +98,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .postbycustom(
+      context,
       ApiConstants.editCustomerUrl,
       data: FormData.fromMap(model.toJson()),
       options: Options(
@@ -106,7 +108,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return EditCustomerResponse.fromJson(response.data);
@@ -118,6 +120,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .postbycustom(
+      context,
       ApiConstants.deleteCustomerUrl,
       data: FormData.fromMap(model.toJson()),
       options: Options(
@@ -127,7 +130,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return DeleteCustomerResponse.fromJson(response.data);
@@ -139,6 +142,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .postbycustom(
+      context,
       ApiConstants.customerEquipmentUrl,
       data: FormData.fromMap(model.toJson()),
       options: Options(
@@ -148,7 +152,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return EquipmentResponse.fromJson(response.data);
@@ -160,6 +164,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .postbycustom(
+      context,
       ApiConstants.addEquipmentUrl,
       data: FormData.fromMap(model.toJson()),
       options: Options(
@@ -169,7 +174,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return AddEquipmentResponse.fromJson(response.data);
@@ -181,6 +186,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .postbycustom(
+      context,
       ApiConstants.deleteEquipmentUrl,
       data: FormData.fromMap(model.toJson()),
       options: Options(
@@ -190,7 +196,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return DeleteEquipmentResponse.fromJson(response.data);
@@ -202,6 +208,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .postbycustom(
+      context,
       ApiConstants.editEquipmentUrl,
       data: FormData.fromMap(model.toJson()),
       options: Options(
@@ -211,7 +218,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return EditEquipmentResponse.fromJson(response.data);
@@ -224,6 +231,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .getbycustom(
+      context,
      // '${ApiConstants.getHistoryUrl}?customer_id=${getServiceHistoryRequest.customer_id}',
       '${ApiConstants.getHistoryUrl}?status=${getServiceHistoryRequest.status}&customer_id=${getServiceHistoryRequest.customer_id}&equipment_id=${getServiceHistoryRequest.equipment_id}',
       options: Options(
@@ -233,7 +241,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return GetServiceHistoryResponse.fromJson(response.data);
@@ -245,6 +253,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .getbycustom(
+      context,
       '${ApiConstants.getHistoryUrl}?status=${getServiceHistoryRequest.status}&unit_number=${getServiceHistoryRequest.unit_number}',
       options: Options(
         headers: {
@@ -253,7 +262,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return GetServiceHistoryResponse.fromJson(response.data);
@@ -266,6 +275,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .getbycustom(
+      context,
       '${ApiConstants.getHistoryUrl}?status=${getServiceHistoryRequest.status}&start_date=${getServiceHistoryRequest.start_date}&end_date=${getServiceHistoryRequest.end_date}',
       options: Options(
         headers: {
@@ -274,7 +284,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return GetServiceHistoryResponse.fromJson(response.data);
@@ -286,6 +297,7 @@ class ApiWorker with ApiConstants {
     ProgressBar.showProgressBarApi(context);
     final response = await dio
         .postbycustom(
+      context,
       ApiConstants.saveHistoryUrl,
       data: FormData.fromMap(model.toJson()),
       options: Options(
@@ -295,7 +307,7 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error));
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
     ProgressBar.hideProgressBar();
     return SaveServiceHistoryResponse.fromJson(response.data);

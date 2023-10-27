@@ -118,16 +118,16 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                 make: make ?? '',
                 model: model ?? '',
                 serial: serialNumber ?? '',
-                manufactureDate: manufacture != null
+                manufactureDate: manufacture!.isNotEmpty
                     ? NKDateUtils().getFormattedDate(manufacture!)
                     : '',
-                commissionDate: commission != null
+                commissionDate: commission!.isNotEmpty
                     ? NKDateUtils().getFormattedDate(commission!)
                     : '',
-                majorDate: tenYearMajor != null
+                majorDate: tenYearMajor!.isNotEmpty
                     ? NKDateUtils().getFormattedDate(tenYearMajor!)
                     : '',
-                majorDatee: yearMajor != null
+                majorDatee: yearMajor!.isNotEmpty
                     ? NKDateUtils().getFormattedDate(yearMajor!)
                     : '',
               ),

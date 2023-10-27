@@ -43,6 +43,7 @@ class CustomerDetailController extends GetxController {
     });
     var request = DeleteCustomerRequest(
       token: token ?? '',
+     // token: 'hsksnst',
       id: id,
     );
     await apiWorker.deleteCustomer(request, context).then((value) {
