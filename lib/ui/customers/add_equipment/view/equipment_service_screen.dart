@@ -65,10 +65,7 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
     serviceId = data[11];
     //  equipmentResponse=data[12];
     // name = data[12];
-    print(
-        'yearMajor>>>>>${yearMajor} ${NKDateUtils().getFormattedDate(yearMajor!)}');
-    print(
-        'manufacture>>>>>${manufacture} ${NKDateUtils().getFormattedDate(manufacture!)}');
+
     print('commission>>>>>${commission}');
     print('tenYearMajor>>>>>${tenYearMajor}');
     print('customer_id>>>>>${customer_id}');

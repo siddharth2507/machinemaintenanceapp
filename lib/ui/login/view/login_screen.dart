@@ -7,7 +7,6 @@ import 'package:machinemaintainapp/components/widgets/my_regular_text.dart';
 import 'package:machinemaintainapp/components/widgets/my_theme_button.dart';
 import 'package:machinemaintainapp/ui/login/controller/login_controller.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
-
 import '../../../components/widgets/my_comman_snackbar.dart';
 import '../component/mylogintextfield.dart';
 
