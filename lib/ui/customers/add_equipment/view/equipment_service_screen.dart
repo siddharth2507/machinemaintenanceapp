@@ -419,7 +419,11 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                 .nextServiceDateController.text.isEmpty) {
               CommanSnackbar.showError(
                   'Please Enter Next Service Date', 'Date is required');
-            } else {
+            } else if (addEquipmentController
+                .galleryFile==null) {
+              CommanSnackbar.showError(
+                  'Please Select Image', 'Image is Required');
+            }else {
               addEquipmentController
                   .saveServiceHistory(
                       context, customer_id, equipment_id, serviceId!)

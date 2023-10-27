@@ -119,8 +119,6 @@ class DioExceptionHandler implements Exception {
         break;
       default:
         errorMessage = 'Something went wrong';
-        // NkCommonFunction.showErrorSnakBar(errorMessage);
-
         break;
     }
   }
