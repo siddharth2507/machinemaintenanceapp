@@ -410,7 +410,7 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
         child: MyThemeButton(
           height: AppSizes.height_6_6,
           buttonText: 'Submit',
-          onPressed: () {
+          onPressed: () async {
             if (addEquipmentController.hourController.text.isEmpty) {
               CommanSnackbar.showError('Please Enter Hour', 'Enter valid Hour');
             } else if (addEquipmentController.service.value.isEmpty) {
@@ -424,11 +424,11 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
               CommanSnackbar.showError(
                   'Please Select Image', 'Image is Required');
             }else {
-              addEquipmentController
+              await addEquipmentController
                   .saveServiceHistory(
                       context, customer_id, equipment_id, serviceId!)
-                  .then((value) {
-                addEquipmentController
+                  .then((value) async {
+                await addEquipmentController
                     .saveServiceHistoryFirstTime(
                         context, customer_id, equipment_id, 0)
                     .then((value) {
@@ -437,14 +437,7 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                 // Get.back();
               });
             }
-            /*  {
-              addEquipmentController
-                  .saveServiceHistoryFirstTime(context, customer_id, equipment_id)
-                  .then((value) {
-                addEquipmentController.saveServiceHistory(context, customer_id, equipment_id,serviceId!).then((value) {Get.close(1);});
-                //  Get.back();
-              });
-            }*/
+
           },
         ),
       ),

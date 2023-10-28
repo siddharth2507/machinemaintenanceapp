@@ -13,6 +13,7 @@ import 'package:machinemaintainapp/ui/delete_equipment/model/delete_equipment_re
 import 'package:machinemaintainapp/utills/progressbar.dart';
 import 'package:machinemaintainapp/utills/nk_dates_utils.dart';
 import '../../../../utills/utils.dart';
+import '../model/save_service_upcoming_request.dart';
 
 class AddEquipmentController extends GetxController {
   late ApiWorker apiWorker = Get.put(ApiWorker());
@@ -110,24 +111,18 @@ class AddEquipmentController extends GetxController {
       token = value!.data!.token;
     });
     var date = DateTime.now();
-    // var newDate = DateTime(date.year, date.month +3, date.day);
     var apinext3monthdate =
         NKDateUtils.apiDayFormat(DateTime(date.year, date.month + 3, date.day));
-    var todayservicedate =
-        NKDateUtils.apiDayFormat(DateTime(date.year, date.month, date.day));
     print("API_NEXT $apinext3monthdate");
 
-    request = SaveServiceHistoryRequest(
+    request = SaveServiceUpcomingRequest(
         token: token ?? '',
-        last_service_date: todayservicedate,
         next_service_dates: type ==0? nextServiceDateController.text: apinext3monthdate,
         customer_id: custome_id,
-        last_service_reading: '0',
         equipment_id: equipment_id);
 
-    await apiWorker.saveServiceHistory(request, context).then((value) {
+    await apiWorker.saveServiceUpcoming(request, context).then((value) {
       if (value != null) {
-        //ProgressBar.hideProgressBar();
         saveServiceHistoryResponse.value = value;
         print(
             'value+++12 ++ ${saveServiceHistoryResponse.value.data.toString()}');

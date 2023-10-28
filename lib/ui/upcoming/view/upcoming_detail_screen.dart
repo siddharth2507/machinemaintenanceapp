@@ -59,6 +59,7 @@ class _UpcomingDetailScreenState extends State<UpcomingDetailScreen> {
     type = Get.arguments[11];
     service = Get.arguments[12];
     serviceHistoryController.addNoteController.text = Get.arguments[9];
+    print("lastDate++++${date}");
   }
 
   @override
@@ -133,7 +134,9 @@ class _UpcomingDetailScreenState extends State<UpcomingDetailScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ServiceDetailContainer(
-                              date: date ?? '',
+                              date: date != null
+                                  ? NKDateUtils().getFormattedDate(date!)
+                                  : '',
                               type: type ?? '',
                               service: service ?? '',
                             ),

@@ -136,9 +136,7 @@ class _ServiceHistoryScreenState extends State<ServiceHistoryScreen> {
                           children: [
                             ServiceDetailContainer(
                               date: date != null
-                                  ? NKDateUtils.commonDayFormat(
-                                      NKDateUtils.formatStringUTCDateTime(
-                                          date ?? ''))
+                                  ? NKDateUtils().getFormattedDate(date!)
                                   : '',
                               type: type ?? '',
                               service: service ?? '',

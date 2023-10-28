@@ -292,7 +292,6 @@ class LoggerInterceptor extends Interceptor {
     final requestPath = '${options.baseUrl}${options.path}';
     logger.e('${options.method} request => $requestPath'); // Debug log
     logger.d('Error: ${err.error}, Message: ${err.message}'); // Error log
-    // Error log
     return super.onError(err, handler);
   }
 

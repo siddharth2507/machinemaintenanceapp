@@ -281,7 +281,7 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin {
               '${filterstartdate}-${filterenddate}';
           upcomingServiceController.getUpcomingServiceHistory(
               context, 1, filterstartdate!, filterenddate!);
-          //  controller.getSubscriptionList(filterstartdate,filterenddate,controller.pageUser.value,true,context);
+
         });
         print('date+++ ${startformatted}');
         print('date+++ ${_endDate.value!}');

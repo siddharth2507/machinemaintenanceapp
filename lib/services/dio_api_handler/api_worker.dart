@@ -3,6 +3,7 @@ import 'package:machinemaintainapp/ui/customers/add_customer/model/add_customer_
 import 'package:machinemaintainapp/ui/customers/add_customer/model/save_customer_response.dart';
 import 'package:machinemaintainapp/ui/customers/add_equipment/model/save_service_history_request.dart';
 import 'package:machinemaintainapp/ui/customers/add_equipment/model/save_service_history_response.dart';
+import 'package:machinemaintainapp/ui/customers/add_equipment/model/save_service_upcoming_request.dart';
 import 'package:machinemaintainapp/ui/customers/customer_detail/model/equipment_request.dart';
 import 'package:machinemaintainapp/ui/customers/customer_detail/model/equipment_response.dart';
 import 'package:machinemaintainapp/ui/customers/customer_list/model/customer_response.dart';
@@ -295,6 +296,29 @@ class ApiWorker with ApiConstants {
   Future<SaveServiceHistoryResponse?> saveServiceHistory(
       SaveServiceHistoryRequest model, context) async {
     ProgressBar.showProgressBarApi(context);
+    print("model++++++${model.toJson()}");
+    final response = await dio
+        .postbycustom(
+      context,
+      ApiConstants.saveHistoryUrl,
+      data: FormData.fromMap(model.toJson()),
+      options: Options(
+        headers: {
+          "authorization": "Bearer ${model.token}",
+        },
+      ),
+    )
+        .onError((DioException error, stackTrace) {
+      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+    });
+    ProgressBar.hideProgressBar();
+    return SaveServiceHistoryResponse.fromJson(response.data);
+  }
+
+  Future<SaveServiceHistoryResponse?> saveServiceUpcoming(
+      SaveServiceUpcomingRequest model, context) async {
+    ProgressBar.showProgressBarApi(context);
+    print("model++++++${model.toJson()}");
     final response = await dio
         .postbycustom(
       context,
