@@ -117,12 +117,15 @@ class AddEquipmentController extends GetxController {
 
     request = SaveServiceUpcomingRequest(
         token: token ?? '',
-        next_service_dates: type ==0? nextServiceDateController.text: apinext3monthdate,
+        next_service_dates:
+            type == 0 ? nextServiceDateController.text : apinext3monthdate,
         customer_id: custome_id,
         equipment_id: equipment_id);
 
     await apiWorker.saveServiceUpcoming(request, context).then((value) {
       if (value != null) {
+        print('third++ in ');
+        ProgressBar.hideProgressBar();
         saveServiceHistoryResponse.value = value;
         print(
             'value+++12 ++ ${saveServiceHistoryResponse.value.data.toString()}');
@@ -173,7 +176,8 @@ class AddEquipmentController extends GetxController {
 
     await apiWorker.saveServiceHistory(request, context).then((value) {
       if (value != null) {
-        //ProgressBar.hideProgressBar();
+        print('first++ in ');
+        ProgressBar.hideProgressBar();
         saveServiceHistoryResponse.value = value;
         print(
             'value+++12 ++ ${saveServiceHistoryResponse.value.data.toString()}');

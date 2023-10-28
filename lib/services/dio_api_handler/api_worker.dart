@@ -311,7 +311,7 @@ class ApiWorker with ApiConstants {
         .onError((DioException error, stackTrace) {
       return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
-    ProgressBar.hideProgressBar();
+    // ProgressBar.hideProgressBar();
     return SaveServiceHistoryResponse.fromJson(response.data);
   }
 
@@ -333,7 +333,7 @@ class ApiWorker with ApiConstants {
         .onError((DioException error, stackTrace) {
       return Future.error(throw DioExceptionHandler.fromDioError(error,context));
     });
-    ProgressBar.hideProgressBar();
+    // ProgressBar.hideProgressBar();
     return SaveServiceHistoryResponse.fromJson(response.data);
   }
 }

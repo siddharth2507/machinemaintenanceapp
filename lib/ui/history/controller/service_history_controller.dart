@@ -36,5 +36,4 @@ class ServiceHistoryController extends GetxController {
     });
     return null;
   }
-
 }

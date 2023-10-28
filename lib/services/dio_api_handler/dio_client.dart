@@ -11,8 +11,8 @@ class DioClient with ApiConstants {
       : _dio = Dio(
           BaseOptions(
             baseUrl: ApiConstants.baseUrl,
-            connectTimeout: const Duration(seconds: 3),
-            receiveTimeout: const Duration(seconds: 1),
+            connectTimeout: const Duration(seconds: 60),
+            receiveTimeout: const Duration(seconds: 60),
             responseType: ResponseType.json,
           ),
         )..interceptors.addAll([

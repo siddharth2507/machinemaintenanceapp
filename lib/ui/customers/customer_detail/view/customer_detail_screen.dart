@@ -300,45 +300,53 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOfManufactur!=null?customerDetailController
+                                            .dateOfManufactur != null
+                                            ? customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOfManufactur??'': "",
+                                            .dateOfManufactur ?? ''
+                                            : "",
                                         customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOfCommission!=null?customerDetailController
+                                            .dateOfCommission != null
+                                            ? customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOfCommission??'':"",
+                                            .dateOfCommission ?? ''
+                                            : "",
                                         customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOf10YearMajor!=null?customerDetailController
+                                            .dateOf10YearMajor != null
+                                            ? customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOf10YearMajor??'':"",
+                                            .dateOf10YearMajor ?? ''
+                                            : "",
                                         customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOf15YearMajor!=null?customerDetailController
+                                            .dateOf15YearMajor != null
+                                            ? customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOf15YearMajor??'':"",
+                                            .dateOf15YearMajor ?? ''
+                                            : "",
                                         machineName,
                                         customerDetailController
                                             .equipmentResponse
@@ -705,7 +713,7 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                                 height: AppSizes.height_1_5,
                               ),
                               ManufactureDetailContainer(
-                                  manufactureDate:customerDetailController
+                                  manufactureDate: customerDetailController
                                       .equipmentResponse
                                       .value
                                       .data!
@@ -720,7 +728,7 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                                               .data!
                                               .equipment![index]
                                               .dateOfManufactur!
-                                              .toString())):'',
+                                              .toString())) : '',
                                   // commissionDate:NKDateUtils.commonDayFormat(
                                   // NKDateUtils.formatStringUTCDateTime(
                                   commissionDate: customerDetailController

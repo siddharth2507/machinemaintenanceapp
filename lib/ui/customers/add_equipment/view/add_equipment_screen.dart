@@ -10,7 +10,6 @@ import 'package:machinemaintainapp/components/widgets/my_theme_button.dart';
 import 'package:machinemaintainapp/routes/routes.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/customers/add_equipment/controller/add_equipment_controller.dart';
-import 'package:machinemaintainapp/utills/const_string.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
 class AddEquipmentScreen extends StatefulWidget {
@@ -214,6 +213,10 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
               CommanSnackbar.showError(
                   'Please Enter Unit Number', 'Unit Number is required');
             } else if (addEquipmentController
+                .mAkeController.value.text.isEmpty) {
+              CommanSnackbar.showError(
+                  'Please Enter Make', 'Make  is required');
+            } else if (addEquipmentController
                 .serialNumberController.value.text.isEmpty) {
               CommanSnackbar.showError(
                   'Please Enter Serial Number', 'Serial Number is required');
@@ -221,7 +224,7 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                 .modelNumberController.value.text.isEmpty) {
               CommanSnackbar.showError(
                   'Please Enter Model Number', 'Model Number is required');
-            }  else {
+            } else {
               showModalBottomSheet(
                   context: context,
                   builder: (BuildContext context) {
@@ -261,11 +264,12 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                             const SizedBox(
                               height: 5,
                             ),
-                            const MyRegularText(
+                            MyRegularText(
                               align: TextAlign.start,
-                              label: customer,
+                              label:
+                                  "Hey, you want to add service for this machine?  \nUnit number: ${addEquipmentController.unitNumberController.text},\nMake: ${addEquipmentController.mAkeController.text},\nModel: ${addEquipmentController.modelNumberController.text},\nand Serial number: ${addEquipmentController.serialNumberController.text}",
                               color: Colors.grey,
-                              maxlines: 4,
+                              maxlines: 6,
                               // fontWeight: FontWeight.bold,
                               fontSize: 14,
                             ),
@@ -286,7 +290,15 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                                           addEquipmentController
                                               .addCustomerEquipment(context, id)
                                               .then((value) {
-                                                addEquipmentController.saveServiceHistoryFirstTime(context, id, value!.data!.id!,1).then((value) {Get.close(1);});
+                                            addEquipmentController
+                                                .saveServiceHistoryFirstTime(
+                                                    context,
+                                                    id,
+                                                    value!.data!.id!,
+                                                    1)
+                                                .then((value) {
+                                              Get.close(1);
+                                            });
                                           });
                                         }),
                                   ),
@@ -307,36 +319,42 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                                               .data!
                                               .id!;
 
-                                          addEquipmentController.saveServiceHistoryFirstTime(context, id, equipmentId,1).then((value) {
+                                          addEquipmentController
+                                              .saveServiceHistoryFirstTime(
+                                                  context, id, equipmentId, 1)
+                                              .then((value) {
                                             Get.toNamed(
                                                 AppRoutes.equipmentService,
                                                 arguments: [
                                                   id,
                                                   equipmentId,
                                                   addEquipmentController
-                                                      .machineNameController.text,
+                                                      .machineNameController
+                                                      .text,
                                                   addEquipmentController
                                                       .mAkeController.text,
                                                   addEquipmentController
-                                                      .modelNumberController.text,
+                                                      .modelNumberController
+                                                      .text,
                                                   addEquipmentController
                                                       .serialNumberController
                                                       .text,
                                                   addEquipmentController
-                                                      .manufactureController.text,
+                                                      .manufactureController
+                                                      .text,
                                                   addEquipmentController
-                                                      .commissionController.text,
+                                                      .commissionController
+                                                      .text,
                                                   addEquipmentController
                                                       .tenYearMajorController
                                                       .text,
                                                   addEquipmentController
                                                       .yearMajorController.text,
-                                                  companyName,value.data?.id
+                                                  companyName,
+                                                  value.data?.id
                                                 ]);
                                           });
-                                          print(
-                                              'equipmentIddd>>>${equipmentId}');
-
+                                          print('equipmentId>>>${equipmentId}');
                                         });
                                       },
                                     ),

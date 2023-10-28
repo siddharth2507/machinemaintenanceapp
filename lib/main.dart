@@ -8,9 +8,11 @@ import 'general_binding/common_binding.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   /// [backgroundHandler] use to handle notification on background
   runApp(const GetMyApp());
 }
+
 class GetMyApp extends StatelessWidget {
   const GetMyApp({super.key});
 

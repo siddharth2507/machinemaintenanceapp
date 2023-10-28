@@ -11,7 +11,6 @@ import 'package:machinemaintainapp/components/widgets/my_theme_button.dart';
 import 'package:machinemaintainapp/routes/routes.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/customers/add_customer/controller/add_customer_controller.dart';
-import 'package:machinemaintainapp/utills/const_string.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
 class AddCustomerScreen extends StatefulWidget {
@@ -170,9 +169,10 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
                             const SizedBox(
                               height: 5,
                             ),
-                            const MyRegularText(
+                             MyRegularText(
                               align: TextAlign.start,
-                              label: customer,
+                              label: "Hey, you want to add machine for this customer ? \nCustomer name: ${addCustomerController
+                                  .nameController.value.text}",
                               color: Colors.grey,
                               maxlines: 4,
                               // fontWeight: FontWeight.bold,

@@ -66,7 +66,7 @@ class HistoryContainer extends StatelessWidget {
                       style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color:  Colors.black),
+                          color: Colors.black),
                       label: machineName ?? '',
                     ),
                     Padding(

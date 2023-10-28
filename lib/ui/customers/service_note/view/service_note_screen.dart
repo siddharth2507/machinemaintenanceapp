@@ -153,16 +153,21 @@ class _ServiceNoteScreenState extends State<ServiceNoteScreen> {
                                     children: [
                                       ServiceDetailContainer(
                                         date: serviceNoteController
-                                            .getServiceHistoryResponse
-                                            .value
-                                            .data
-                                            ?.equipment![index]
-                                            .lastServiceDate!=null?NKDateUtils.commonDayFormat(
-                                            NKDateUtils.formatStringUTCDateTime(serviceNoteController
-                                                .getServiceHistoryResponse
-                                                .value
-                                                .data!.equipment![index]
-                                                .lastServiceDate!)):'',
+                                                    .getServiceHistoryResponse
+                                                    .value
+                                                    .data
+                                                    ?.equipment![index]
+                                                    .lastServiceDate !=
+                                                null
+                                            ? NKDateUtils.commonDayFormat(
+                                                NKDateUtils.formatStringUTCDateTime(
+                                                    serviceNoteController
+                                                        .getServiceHistoryResponse
+                                                        .value
+                                                        .data!
+                                                        .equipment![index]
+                                                        .lastServiceDate!))
+                                            : '',
                                         type: serviceNoteController
                                             .getServiceHistoryResponse
                                             .value

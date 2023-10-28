@@ -419,25 +419,25 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                 .nextServiceDateController.text.isEmpty) {
               CommanSnackbar.showError(
                   'Please Enter Next Service Date', 'Date is required');
-            } else if (addEquipmentController
-                .galleryFile==null) {
+            } else if (addEquipmentController.galleryFile == null) {
               CommanSnackbar.showError(
                   'Please Select Image', 'Image is Required');
-            }else {
+            } else {
               await addEquipmentController
                   .saveServiceHistory(
                       context, customer_id, equipment_id, serviceId!)
                   .then((value) async {
+                print('second++ in ');
                 await addEquipmentController
                     .saveServiceHistoryFirstTime(
                         context, customer_id, equipment_id, 0)
                     .then((value) {
+                  print('4++ in ');
                   Get.close(0);
                 });
                 // Get.back();
               });
             }
-
           },
         ),
       ),

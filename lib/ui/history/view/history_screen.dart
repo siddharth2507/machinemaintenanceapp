@@ -220,7 +220,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                   NKDateUtils.formatStringUTCDateTime(
                                       serviceHistoryController
                                           .getServiceHistoryResponse.value.data
-                                          !.equipment![index].lastServiceDate!)),
+                                      !.equipment![index].lastServiceDate!)),
                               // date: serviceHistoryController
                               //     .getServiceHistoryResponse
                               //     .value
@@ -232,7 +232,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               //     ?.equipment![index].lastServiceDate.toString())
                               //    )
                               //     : null,
-                            /*  date: serviceHistoryController
+                              /*  date: serviceHistoryController
                                   .getServiceHistoryResponse
                                   .value
                                   .data
