@@ -43,7 +43,8 @@ class ApiWorker with ApiConstants {
       data: FormData.fromMap(loginRequest.toJson()),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return LoginResponse.fromJson(response.data);
@@ -65,7 +66,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return CustomerResponse.fromJson(response.data);
@@ -87,7 +89,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return SaveCustomerResponse.fromJson(response.data);
@@ -109,7 +112,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return EditCustomerResponse.fromJson(response.data);
@@ -131,7 +135,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return DeleteCustomerResponse.fromJson(response.data);
@@ -153,7 +158,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return EquipmentResponse.fromJson(response.data);
@@ -175,7 +181,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return AddEquipmentResponse.fromJson(response.data);
@@ -197,7 +204,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return DeleteEquipmentResponse.fromJson(response.data);
@@ -219,7 +227,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return EditEquipmentResponse.fromJson(response.data);
@@ -233,7 +242,7 @@ class ApiWorker with ApiConstants {
     final response = await dio
         .getbycustom(
       context,
-     // '${ApiConstants.getHistoryUrl}?customer_id=${getServiceHistoryRequest.customer_id}',
+      // '${ApiConstants.getHistoryUrl}?customer_id=${getServiceHistoryRequest.customer_id}',
       '${ApiConstants.getHistoryUrl}?status=${getServiceHistoryRequest.status}&customer_id=${getServiceHistoryRequest.customer_id}&equipment_id=${getServiceHistoryRequest.equipment_id}',
       options: Options(
         headers: {
@@ -242,11 +251,13 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return GetServiceHistoryResponse.fromJson(response.data);
   }
+
   /// get  Service History
   Future<GetServiceHistoryResponse?> getServiceHistory(
       GetServiceHistoryRequest getServiceHistoryRequest, context) async {
@@ -263,7 +274,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return GetServiceHistoryResponse.fromJson(response.data);
@@ -285,8 +297,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     ProgressBar.hideProgressBar();
     return GetServiceHistoryResponse.fromJson(response.data);
@@ -309,7 +321,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     // ProgressBar.hideProgressBar();
     return SaveServiceHistoryResponse.fromJson(response.data);
@@ -331,7 +344,8 @@ class ApiWorker with ApiConstants {
       ),
     )
         .onError((DioException error, stackTrace) {
-      return Future.error(throw DioExceptionHandler.fromDioError(error,context));
+      return Future.error(
+          throw DioExceptionHandler.fromDioError(error, context));
     });
     // ProgressBar.hideProgressBar();
     return SaveServiceHistoryResponse.fromJson(response.data);

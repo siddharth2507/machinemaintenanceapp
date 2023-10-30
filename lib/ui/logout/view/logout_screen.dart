@@ -27,6 +27,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
   LoginResponse? loginResponse;
   String? Name = '';
   String? Email = '';
+
   @override
   void initState() {
     // TODO: implement initState
@@ -34,10 +35,11 @@ class _LogOutScreenState extends State<LogOutScreen> {
     SessionHelper().getLoginResponse().then((value) {
       print('Dataa>>>>>>${value!.data!.user?.email.toString()} ');
       setState(() {
-        loginResponse=value;
-        logOutController.nameController.text=value.data!.user!.name.toString();
-        logOutController.emailController.text=value.data!.user!.email.toString();
-
+        loginResponse = value;
+        logOutController.nameController.text =
+            value.data!.user!.name.toString();
+        logOutController.emailController.text =
+            value.data!.user!.email.toString();
       });
     });
   }
@@ -95,7 +97,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                       ),
                       MyCommonFormField(
                         controller: logOutController.emailController,
-                        hintText:'Email',
+                        hintText: 'Email',
                         isReadOnly: true,
                         textInputType: TextInputType.name,
                       ),
@@ -104,7 +106,9 @@ class _LogOutScreenState extends State<LogOutScreen> {
                 ),
               ),
             ),
-            SizedBox(height: AppSizes.height_4,),
+            SizedBox(
+              height: AppSizes.height_4,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
               child: MyThemeButton(
@@ -114,8 +118,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                   if (logOutController.nameController.text.isEmpty) {
                     CommanSnackbar.showError(
                         'Please Enter  Name', 'Name is required');
-                  } else
-                  if (logOutController.nameController.text.isEmpty) {
+                  } else if (logOutController.nameController.text.isEmpty) {
                     CommanSnackbar.showError(
                         'Please Enter Email', 'Email is required');
                   } else {
@@ -130,5 +133,4 @@ class _LogOutScreenState extends State<LogOutScreen> {
       ),
     );
   }
-
 }

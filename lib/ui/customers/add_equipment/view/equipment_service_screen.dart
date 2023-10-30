@@ -432,7 +432,7 @@ class _EquipmentServiceScreenState extends State<EquipmentServiceScreen> {
                     .saveServiceHistoryFirstTime(
                         context, customer_id, equipment_id, 0)
                     .then((value) {
-                  print('4++ in ');
+                  print('4++ in');
                   Get.close(0);
                 });
                 // Get.back();

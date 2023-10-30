@@ -15,7 +15,6 @@ import 'package:machinemaintainapp/components/widgets/my_theme_button.dart';
 import 'package:machinemaintainapp/routes/routes.dart';
 import 'package:machinemaintainapp/theme/color/colors.dart';
 import 'package:machinemaintainapp/ui/customers/customer_detail/contoller/customer_detail_controller.dart';
-import 'package:machinemaintainapp/utills/const_string.dart';
 import 'package:machinemaintainapp/utills/nk_dates_utils.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
 
@@ -156,12 +155,12 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                                           SizedBox(
                                             height: AppSizes.height_2,
                                           ),
-                                          const MyRegularText(
+                                          MyRegularText(
                                             align: TextAlign.start,
-                                            label: customer,
+                                            label: "Hey, you want to delete this customer ?\n Customer name: ${name ??
+                                                ''}",
                                             color: Colors.grey,
                                             maxlines: 4,
-                                            // fontWeight: FontWeight.bold,
                                             fontSize: 14,
                                           ),
                                           SizedBox(
@@ -507,12 +506,33 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                                                     height:
                                                     AppSizes.height_2,
                                                   ),
-                                                  const MyRegularText(
+                                                  MyRegularText(
                                                     align:
                                                     TextAlign.start,
-                                                    label: customer,
+                                                    label: "Hey, you want to delete this machine?  \nUnit number: ${customerDetailController
+                                                        .equipmentResponse
+                                                        .value
+                                                        .data!
+                                                        .equipment![index]
+                                                        .unitNumber},\nMake: ${customerDetailController
+                                                        .equipmentResponse
+                                                        .value
+                                                        .data!
+                                                        .equipment![index]
+                                                        .make},\nModel: ${customerDetailController
+                                                        .equipmentResponse
+                                                        .value
+                                                        .data!
+                                                        .equipment![index]
+                                                        .model},\nand Serial number: ${customerDetailController
+                                                        .equipmentResponse
+                                                        .value
+                                                        .data!
+                                                        .equipment![index]
+                                                        .serialNumber}",
+                                                    /*"Hey, you want to add machine for this customer ?\n Customer name: ${name??''}",*/
                                                     color: Colors.grey,
-                                                    maxlines: 4,
+                                                    maxlines: 7,
                                                     // fontWeight: FontWeight.bold,
                                                     fontSize: 14,
                                                   ),
