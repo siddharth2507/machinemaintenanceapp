@@ -121,10 +121,17 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
                 .nameController.value.text.isEmpty) {
               CommanSnackbar.showError('Please Enter Name', 'Name is required');
             } else if (addCustomerController
-                    .contactNumberController.value.text.length >
-                11&&addCustomerController.contactNumberController.text.isEmpty) {
+                .contactNumberController.text.isEmpty) {
               CommanSnackbar.showError(
-                  'Please Enter Contact Number', 'Add Valid is required');
+                  'Please Enter Contact Number', 'Add Valid Contact Number');
+            } else if (addCustomerController
+                        .contactNumberController.value.text.length <
+                    9 ||
+                addCustomerController
+                        .contactNumberController.value.text.length >
+                    10) {
+              CommanSnackbar.showError(
+                  'Invalid Contact Number', 'Enter valid Contact number');
             } else if (addCustomerController
                 .emailTextEditingController.value.text.isEmpty) {
               CommanSnackbar.showError(
@@ -147,17 +154,22 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            const Align(
+                            Align(
                               alignment: Alignment.topRight,
-                              child: MyRegularText(
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: Colors.grey,
-                                  decorationColor: Colors.grey,
-                                  fontSize: 16,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: const MyRegularText(
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Colors.grey,
+                                    decorationColor: Colors.grey,
+                                    fontSize: 16,
+                                  ),
+                                  align: TextAlign.right,
+                                  label: 'Close',
                                 ),
-                                align: TextAlign.right,
-                                label: 'Close',
                               ),
                             ),
                             const MyRegularText(
@@ -169,10 +181,10 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
                             const SizedBox(
                               height: 5,
                             ),
-                             MyRegularText(
+                            MyRegularText(
                               align: TextAlign.start,
-                              label: "Hey, you want to add machine for this customer ? \nCustomer name: ${addCustomerController
-                                  .nameController.value.text}",
+                              label:
+                                  "Hey, you want to add machine for this customer ? \nCustomer name: ${addCustomerController.nameController.value.text}",
                               color: Colors.grey,
                               maxlines: 4,
                               // fontWeight: FontWeight.bold,

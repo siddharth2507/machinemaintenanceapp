@@ -242,17 +242,21 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            const Align(
+                             Align(
                               alignment: Alignment.topRight,
-                              child: MyRegularText(
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: Colors.grey,
-                                  decorationColor: Colors.grey,
-                                  fontSize: 16,
+                              child: InkWell(onTap: (){
+                                Get.back();
+                              },
+                                child: const MyRegularText(
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Colors.grey,
+                                    decorationColor: Colors.grey,
+                                    fontSize: 16,
+                                  ),
+                                  align: TextAlign.right,
+                                  label: 'Close',
                                 ),
-                                align: TextAlign.right,
-                                label: 'Close',
                               ),
                             ),
                             const MyRegularText(
@@ -297,7 +301,7 @@ class _AddEquipmentScreenState extends State<AddEquipmentScreen> {
                                                     value!.data!.id!,
                                                     1)
                                                 .then((value) {
-                                              Get.close(1);
+                                              Get.close(2);
                                             });
                                           });
                                         }),

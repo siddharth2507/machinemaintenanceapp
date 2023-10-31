@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -122,7 +121,7 @@ class _EditEquipmentScreenState extends State<EditEquipmentScreen> {
                       if (datePicked != null) {
                         setState(() {
                           editEquipmentController.manufactureController.text =
-                              ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                              ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                         });
                       }
                     },
@@ -142,7 +141,7 @@ class _EditEquipmentScreenState extends State<EditEquipmentScreen> {
                       if (datePicked != null) {
                         setState(() {
                           editEquipmentController.commissionController.text =
-                              ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                              ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                         });
                       }
                     },
@@ -162,7 +161,7 @@ class _EditEquipmentScreenState extends State<EditEquipmentScreen> {
                       if (datePicked != null) {
                         setState(() {
                           editEquipmentController.tenYearMajorController.text =
-                              ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                              ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                         });
                       }
                     },
@@ -182,7 +181,7 @@ class _EditEquipmentScreenState extends State<EditEquipmentScreen> {
                       if (datePicked != null) {
                         setState(() {
                           editEquipmentController.yearMajorController.text =
-                              ('${datePicked.year}/${datePicked.month}/${datePicked.day}');
+                              ('${datePicked.year}-${datePicked.month}-${datePicked.day}');
                         });
                       }
                     },

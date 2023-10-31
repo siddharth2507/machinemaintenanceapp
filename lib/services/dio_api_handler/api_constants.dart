@@ -1,6 +1,6 @@
 mixin class ApiConstants {
-  //static const String baseUrl = "http://192.168.1.51:1000/";
-  static const String baseUrl = "http://139.59.3.15/machine_maintain/public/api/";
+ // static const String baseUrl = "http://139.59.3.15/machine_maintain/public/api/";
+  static const String baseUrl = "http://170.64.254.83/machine_maintain/public/api/";
   static const String loginUrl = "auth/login";
   static const String getCustomerUrl = "home/getCustomer";
   static const String saveCustomerUrl = "home/saveCustomer";

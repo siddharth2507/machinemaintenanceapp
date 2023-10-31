@@ -414,29 +414,53 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOfManufactur
-                                            .toString(),
+                                            .dateOfManufactur != null ?
                                         customerDetailController
+                                            .equipmentResponse
+                                            .value
+                                            .data!
+                                            .equipment![index]
+                                            .dateOfManufactur.toString() : "",
+                                        customerDetailController
+                                            .equipmentResponse
+                                            .value
+                                            .data!
+                                            .equipment![index]
+                                            .dateOfCommission != null
+                                            ? customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
                                             .dateOfCommission
-                                            .toString(),
+                                            .toString()
+                                            : "",
                                         customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
-                                            .dateOf10YearMajor
-                                            .toString(),
+                                            .dateOf10YearMajor != null ?
                                         customerDetailController
+                                            .equipmentResponse
+                                            .value
+                                            .data!
+                                            .equipment![index]
+                                            .dateOf10YearMajor.toString() : "",
+                                        customerDetailController
+                                            .equipmentResponse
+                                            .value
+                                            .data!
+                                            .equipment![index]
+                                            .dateOf15YearMajor != null
+                                            ? customerDetailController
                                             .equipmentResponse
                                             .value
                                             .data!
                                             .equipment![index]
                                             .dateOf15YearMajor
-                                            .toString(),
+                                            .toString()
+                                            : "",
                                         customerDetailController
                                             .equipmentResponse
                                             .value
@@ -444,11 +468,6 @@ class _CustomerDetailScreenState extends State<CustomerDetailScreen> {
                                             .equipment![index]
                                             .serialNumber
                                             .toString(),
-                                        /* customerDetailController
-                                                  .equipmentResponse
-                                                  .value
-                                                  .data!
-                                                  .equipment![index]*/
                                       ]);
                                 },
                                 child: Padding(

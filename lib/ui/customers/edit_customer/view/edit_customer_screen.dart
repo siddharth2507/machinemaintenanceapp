@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:machinemaintainapp/common_components/component/my_common_formfield.dart';
 import 'package:machinemaintainapp/components/widgets/my_common_container.dart';
@@ -18,7 +19,7 @@ class EditCustomerScreen extends StatefulWidget {
 class _EditCustomerScreenState extends State<EditCustomerScreen> {
   EditCustomerController editCustomerController = Get.find();
   int id = 0;
-
+  final digitsOnly = RegExp(r'^\d{0,10}$');
   @override
   void initState() {
     // TODO: implement initState
@@ -101,6 +102,10 @@ class _EditCustomerScreenState extends State<EditCustomerScreen> {
                               editCustomerController.contactNumberController,
                           hintText: 'Contact Number',
                           textInputType: TextInputType.phone,
+                          // inputFormatters: [
+                          //   FilteringTextInputFormatter.allow(
+                          //       digitsOnly)
+                          // ],
                         ),
                         MyCommonFormField(
                           controller: editCustomerController.emailController,
