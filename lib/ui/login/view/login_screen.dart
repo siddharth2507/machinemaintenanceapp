@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:machinemaintainapp/components/common_size/common_hight_width.dart';
 import 'package:machinemaintainapp/components/common_size/nk_spacing.dart';
 import 'package:machinemaintainapp/components/widgets/my_common_container.dart';
+import 'package:machinemaintainapp/components/widgets/my_form_field.dart';
 import 'package:machinemaintainapp/components/widgets/my_regular_text.dart';
 import 'package:machinemaintainapp/components/widgets/my_theme_button.dart';
 import 'package:machinemaintainapp/ui/login/controller/login_controller.dart';
 import 'package:machinemaintainapp/utills/sizer_utils.dart';
+
 import '../../../components/widgets/my_comman_snackbar.dart';
 import '../component/mylogintextfield.dart';
 
@@ -87,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             if (loginController.emailTextEditingController.value
                                 .text.isEmpty) {
-                             // AwesomeSnackbarContent(title: 'Email Address is required', message: 'Please Enter Email Address', contentType: ContentType.failure,color: Colors.red,);
+                              // AwesomeSnackbarContent(title: 'Email Address is required', message: 'Please Enter Email Address', contentType: ContentType.failure,color: Colors.red,);
                               CommanSnackbar.showError(
                                   'Please Enter Email Address',
                                   'Email Address is required');

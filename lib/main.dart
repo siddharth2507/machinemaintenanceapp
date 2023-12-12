@@ -4,6 +4,7 @@ import 'package:machinemaintainapp/components/common_size/common_hight_width.dar
 import 'package:machinemaintainapp/routes/routes.dart';
 import 'package:machinemaintainapp/theme/get_theme.dart';
 import 'package:sizer/sizer.dart';
+
 import 'general_binding/common_binding.dart';
 
 Future<void> main() async {

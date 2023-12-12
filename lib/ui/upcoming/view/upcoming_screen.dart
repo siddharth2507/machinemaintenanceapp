@@ -277,6 +277,7 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin {
         setState(() {
           filterstartdate = startformatted;
           filterenddate = endformatted;
+          print('endDate+++++ ${endformatted}');
           upcomingServiceController.searchDateController.text =
               '${filterstartdate}-${filterenddate}';
           upcomingServiceController.getUpcomingServiceHistory(
@@ -324,7 +325,7 @@ class _UpComingScreenState extends State<UpComingScreen> with RestorationMixin {
             initialDateRange:
                 _initialDateTimeRange(arguments! as Map<dynamic, dynamic>),
             firstDate: DateTime.now().subtract(const Duration(days: 365)),
-            lastDate: DateTime(2024),
+            lastDate: DateTime.now().add(Duration(days: 1825)),
             initialEntryMode: DatePickerEntryMode.calendarOnly,
           ),
         );
